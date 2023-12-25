@@ -9,7 +9,7 @@
     <h1>Hello, ColdFusion!</h1>
     <p>This is a simple ColdFusion page.</p>
 
-    <cfset myVariable = "Hello from ColdFusion!">
+    <cfset myVariable = "This time copying everything!">
     <cfoutput>#myVariable#</cfoutput>
 </body>
 </html>
