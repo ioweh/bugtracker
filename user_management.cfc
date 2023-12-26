@@ -4,6 +4,7 @@
 
     <!-- Function to list all users -->
     <cffunction name="listUsers" access="public" returntype="query">
+        <cfset var userList = "">
         <cfquery name="userList" datasource="CFBugTracker">
             SELECT user_id, login, name, surname, password
             FROM user_account
@@ -15,6 +16,7 @@
     <!-- Function to get user details by user_id -->
     <cffunction name="getUserById" access="public" returntype="query">
         <cfargument name="userId" type="numeric" required="true">
+        <cfset var userDetails = "">
         <cfquery name="userDetails" datasource="CFBugTracker">
             SELECT user_id, login, name, surname, password
             FROM user_account
@@ -37,7 +39,7 @@
                 name = <cfqueryparam value="#arguments.newUsername#" cfsqltype="cf_sql_varchar">,
                 surname = <cfqueryparam value="#arguments.newUserSurname#" cfsqltype="cf_sql_varchar">
                 <cfif len(arguments.newPassword) neq 0>
-                    <cfset hashedPassword = hash(newPassword, "SHA-256")>
+                    <cfset var hashedPassword = hash(newPassword, "SHA-256")>
                     ,password = <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
                 </cfif>
             WHERE user_id = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
@@ -60,7 +62,7 @@
         <cfargument name="newPassword" type="string" required="true">
 
         <!-- In a production environment, hash the password before storing it in the database -->
-        <cfset hashedPassword = hash(newPassword, "SHA-256")>
+        <cfset var hashedPassword = hash(newPassword, "SHA-256")>
 
         <cfquery datasource="your_datasource">
             INSERT INTO user_account (login, password)
