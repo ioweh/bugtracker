@@ -3,12 +3,14 @@
     <!-- Check login credentials -->
     <cfset username = form.username>
     <cfset password = form.password>
+
+    <cfset hashedPassword = hash(password, "SHA-256")>
     
     <cfquery name="getUser" datasource="CFBugTracker">
         SELECT login, password
         FROM user_account
         WHERE login = <cfqueryparam value="#form.username#" cfsqltype="cf_sql_varchar">
-        AND password = <cfqueryparam value="#form.password#" cfsqltype="cf_sql_varchar">
+        AND password = <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
     </cfquery>
 
     <!-- Perform authentication logic (replace this with your authentication logic) -->

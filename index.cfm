@@ -3,6 +3,9 @@
     function register() {
         window.location.href = "register.cfm";
     }
+    function userList() {
+        window.location.href = "user_management.cfm";
+    }
     function logout() {
         window.location.href = "logout.cfm";
     }
@@ -11,13 +14,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My ColdFusion Page</title>
+    <title>Bug Tracker Page</title>
 </head>
 <body>
-    <h1>Hello, ColdFusion!</h1>
+    <h1>Hello, Bug Tracker!</h1>
     <p>Welcome, <CFOUTPUT>#session.loggedInUser#!</CFOUTPUT></p>
 
-    <button onclick="register()">Register</button>
+    <button onclick="register()">Register New User</button>
+    <button onclick="userList()">Manage Users</button>
     <button onclick="logout()">Logout</button>
 </body>
 </html>
