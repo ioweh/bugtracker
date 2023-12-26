@@ -1,4 +1,9 @@
-<!-- index.cfm -->
+
+<script>
+    function logout() {
+        window.location.href = "logout.cfm";
+    }
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -7,10 +12,9 @@
 </head>
 <body>
     <h1>Hello, ColdFusion!</h1>
-    <p>This is a simple ColdFusion page.</p>
+    <p>Welcome, <CFOUTPUT>#session.loggedInUser#!</CFOUTPUT></p>
 
-    <cfset myVariable = "This time copying everything!">
-    <cfoutput>#myVariable#</cfoutput>
+    <button onclick="logout()">Logout</button>
 </body>
 </html>
 
