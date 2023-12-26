@@ -1,15 +1,21 @@
 
 <cfif isDefined("form.loginButton")>
-    <!-- Check login credentials (this is a basic example, implement your own logic) -->
+    <!-- Check login credentials -->
     <cfset username = form.username>
     <cfset password = form.password>
     
-    <cfdump var="#session#"></cfdump>
+    <cfquery name="getUser" datasource="CFBugTracker">
+        SELECT login, password
+        FROM user_account
+        WHERE login = <cfqueryparam value="#form.username#" cfsqltype="cf_sql_varchar">
+        AND password = <cfqueryparam value="#form.password#" cfsqltype="cf_sql_varchar">
+    </cfquery>
+
     <!-- Perform authentication logic (replace this with your authentication logic) -->
-    <cfif username eq "your_username" and password eq "your_password">
+    <cfif getUser.recordCount>
         <!-- Store user information in session upon successful login -->
         <cfset session.loggedInUser = username>
-        <!-- Redirect to a secured page (e.g., home.cfm) -->
+        <!-- Redirect to a secured page (e.g., index.cfm) -->
         <cflocation url="index.cfm" addtoken="false">
     <cfelse>
         <p>Invalid username or password. Please try again.</p>
