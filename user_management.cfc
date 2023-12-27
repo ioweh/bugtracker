@@ -59,15 +59,19 @@
     <!-- Function to add a new user -->
     <cffunction name="addUser" access="public" returntype="void">
         <cfargument name="newLogin" type="string" required="true">
+        <cfargument name="newName" type="string" required="true">
+        <cfargument name="newSurname" type="string" required="true">
         <cfargument name="newPassword" type="string" required="true">
 
         <!-- In a production environment, hash the password before storing it in the database -->
         <cfset var hashedPassword = hash(newPassword, "SHA-256")>
 
-        <cfquery datasource="your_datasource">
-            INSERT INTO user_account (login, password)
+        <cfquery datasource="CFBugTracker">
+            INSERT INTO user_account (login, name, surname, password)
             VALUES (
-                <cfqueryparam value="#newUsername#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#newLogin#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#newName#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#newSurname#" cfsqltype="cf_sql_varchar">,
                 <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
             )
         </cfquery>

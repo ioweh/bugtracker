@@ -5,18 +5,9 @@
 <cfparam name="form.surname" default="">
 <cfparam name="form.password" default="">
 
-<!-- Hash the new password before updating -->
-<cfset hashedPassword = hash(form.password, "SHA-256")>
+<cfset userManagement = createObject("component", "user_management")>
 
-<cfquery name="insertUser" datasource="CFBugTracker">
-    INSERT INTO user_account (login, name, surname, password)
-    VALUES (
-        <cfqueryparam value="#form.login#" cfsqltype="cf_sql_varchar">,
-        <cfqueryparam value="#form.name#" cfsqltype="cf_sql_varchar">,
-        <cfqueryparam value="#form.surname#" cfsqltype="cf_sql_varchar">,
-        <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
-    )
-</cfquery>
+<cfset userManagement.addUser(form.login, form.name, form.surname, form.password)>
 
 <script>
     function main() {
