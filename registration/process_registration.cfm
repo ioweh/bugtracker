@@ -5,13 +5,13 @@
 <cfparam name="form.surname" default="">
 <cfparam name="form.password" default="">
 
-<cfset userManagement = createObject("component", "user_management")>
+<cfset userManagement = createObject("component", "bugtracker.user_management.user_management")>
 
 <cfset userManagement.addUser(form.login, form.name, form.surname, form.password)>
 
 <script>
     function main() {
-        window.location.href = "index.cfm";
+        window.location.href = "../index.cfm";
     }
 </script>
 

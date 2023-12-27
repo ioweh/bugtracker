@@ -1,10 +1,10 @@
 
 <script>
     function register() {
-        window.location.href = "register.cfm";
+        window.location.href = "registration/register.cfm";
     }
     function userList() {
-        window.location.href = "user_management.cfm";
+        window.location.href = "user_management/user_management.cfm";
     }
     function logout() {
         window.location.href = "logout.cfm";
