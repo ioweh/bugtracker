@@ -29,7 +29,8 @@
     <cffunction name="getUserIdByCredentials" access="public" returntype="query">
         <cfargument name="login" type="string" required="true">
         <cfargument name="password" type="string" required="true">
-        <cfset hashedPassword=hash(password, "SHA-256")>
+        <cfset var hashedPassword=hash(password, "SHA-256")>
+        <cfset var getUser = "">
         <cfquery name="getUser" datasource="CFBugTracker">
             SELECT user_id
             FROM user_account
