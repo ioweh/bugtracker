@@ -24,17 +24,16 @@
     <!-- Function to add a new bug -->
     <cffunction name="addBug" access="remote" returntype="void">
         <cfargument name="bugData" type="struct" required="true">
-        <cfset writeDump(bugData)>
         <cfquery datasource="CFBugTracker">
             INSERT INTO bug (date, short_description, long_description, user_id, status, urgency, severity)
             VALUES (
                 <cfqueryparam value="#bugData.date#" cfsqltype="cf_sql_date">,
                 <cfqueryparam value="#bugData.shortDescription#" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="#bugData.shortDescription#" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="4" cfsqltype="cf_sql_integer">,
-                <cfqueryparam value="open" cfsqltype="cf_sql_varchar">::bug_status,
-                <cfqueryparam value="urgent" cfsqltype="cf_sql_varchar">::bug_urgency,
-                <cfqueryparam value="critical" cfsqltype="cf_sql_varchar">::bug_severity
+                <cfqueryparam value="#bugData.longDescription#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#bugData.user_id#" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="new" cfsqltype="cf_sql_varchar">::bug_status,
+                <cfqueryparam value="#bugData.urgency#" cfsqltype="cf_sql_varchar">::bug_urgency,
+                <cfqueryparam value="#bugData.severity#" cfsqltype="cf_sql_varchar">::bug_severity
             );
         </cfquery>
     </cffunction>

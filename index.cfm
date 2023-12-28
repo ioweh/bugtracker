@@ -85,6 +85,12 @@
             });
 
             $(document).ready(function () {
+                // Get today's date in the format "YYYY-MM-DD"
+                var today = new Date().toISOString().split('T')[0];
+
+                // Set the value of the date input field to today
+                document.getElementById('date').value = today;
+
                 $("#addBugButton").click(function () {
                     $("#addBugForm").toggle();
                 });
@@ -98,8 +104,10 @@
                 var formData = {
                     date: $("#date").val(),
                     shortDescription: $("#shortDescription").val(),
-                    status: $("#status").val()
-                    // Add more properties as needed
+                    longDescription: $("#longDescription").val(),
+                    user_id: "<CFOUTPUT>#session.loggedInUserId#</CFOUTPUT>",
+                    urgency: $("#priority").val(),
+                    severity: $("#severity").val(),
                 };
 
                 // Call addBug method of BugManagement.cfc
@@ -162,10 +170,24 @@
         <label for="shortDescription">Short Description:</label>
         <input type="text" id="shortDescription" name="shortDescription" required>
 
-        <label for="status">Status:</label>
-        <input type="text" id="status" name="status" required>
+        <label for="longDescription">Long Description:</label>
+        <input type="text" id="longDescription" name="longDescription" required>
 
-        <!-- Add more input fields for other bug properties -->
+        <label for="priority">Select Priority:</label>
+        <select id="priority" name="priority">
+            <option value="very_urgent">Very Urgent</option>
+            <option value="urgent">Urgent</option>
+            <option value="non_urgent">Non Urgent</option>
+            <option value="not_at_all_urgent">Not at All Urgent</option>
+        </select>
+
+        <label for="severity">Select Severity:</label>
+        <select id="severity" name="severity">
+            <option value="disaster">Disaster</option>
+            <option value="critical">Critical</option>
+            <option value="non_critical">Non Critical</option>
+            <option value="request_for_change">Request for Change</option>
+        </select>
 
         <button type="submit">Submit</button>
     </form>
