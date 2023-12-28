@@ -4,6 +4,7 @@
 
     <!-- Function to get a list of bugs -->
     <cffunction name="getBugList" access="public" returntype="query">
+        <cfset var bugList = "">
         <cfquery name="bugList" datasource="CFBugTracker">
             SELECT * FROM bug;
         </cfquery>
@@ -13,6 +14,7 @@
     <!-- Function to get details of a specific bug -->
     <cffunction name="getBugDetails" access="remote" returntype="query">
         <cfargument name="bugId" type="numeric" required="true">
+        <cfset var bugDetails = "">
         <cfquery name="bugDetails" datasource="CFBugTracker">
             SELECT * FROM bug WHERE bug_id = <cfqueryparam value="#arguments.bugId#" cfsqltype="cf_sql_integer">;
         </cfquery>
