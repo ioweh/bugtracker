@@ -1,22 +1,16 @@
 
 <cfif isDefined("form.loginButton")>
     <!-- Check login credentials -->
-    <cfset username = form.username>
+    <cfset login = form.login>
     <cfset password = form.password>
 
-    <cfset hashedPassword = hash(password, "SHA-256")>
-    
-    <cfquery name="getUser" datasource="CFBugTracker">
-        SELECT login, password
-        FROM user_account
-        WHERE login = <cfqueryparam value="#form.username#" cfsqltype="cf_sql_varchar">
-        AND password = <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
-    </cfquery>
+    <cfset userService = createObject("component", "user_management/user_management")>
+    <cfset currentUser = userService.getUserIdByCredentials(login, password)>
 
     <!-- Perform authentication logic (replace this with your authentication logic) -->
-    <cfif getUser.recordCount>
+    <cfif currentUser.recordCount>
         <!-- Store user information in session upon successful login -->
-        <cfset session.loggedInUser = username>
+        <cfset session.loggedInUserId = currentUser.user_id>
         <!-- Redirect to a secured page (e.g., index.cfm) -->
         <cflocation url="index.cfm" addtoken="false">
     <cfelse>
@@ -32,8 +26,8 @@
 <body>
     <h2>Login</h2>
     <form method="post" action="#cgi.script_name#">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br>
+        <label for="login">Login:</label>
+        <input type="text" name="login" required><br>
         
         <label for="password">Password:</label>
         <input type="password" name="password" required><br>

@@ -25,6 +25,20 @@
         <cfreturn userDetails>
     </cffunction>
 
+    <!-- Function to get user id by login and password -->
+    <cffunction name="getUserIdByCredentials" access="public" returntype="query">
+        <cfargument name="login" type="string" required="true">
+        <cfargument name="password" type="string" required="true">
+        <cfset hashedPassword=hash(password, "SHA-256")>
+        <cfquery name="getUser" datasource="CFBugTracker">
+            SELECT user_id
+            FROM user_account
+            WHERE login = <cfqueryparam value="#login#" cfsqltype="cf_sql_varchar">
+            AND password = <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
+        </cfquery>
+        <cfreturn getUser>
+    </cffunction>
+
     <!-- Function to update user details -->
     <cffunction name="updateUser" access="public" returntype="void">
         <cfargument name="userId" type="numeric" required="true">

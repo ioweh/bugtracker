@@ -36,7 +36,11 @@
 </head>
 <body>
     <h1>Hello, Bug Tracker!</h1>
-    <p>Welcome, <CFOUTPUT>#session.loggedInUser#!</CFOUTPUT></p>
+
+    <cfset userService = createObject("component", "user_management/user_management")>
+    <cfset currentUser = userService.getUserById(session.loggedInUserId)>
+
+    <p>Welcome, <CFOUTPUT>#currentUser.name# #currentUser.surname#!</CFOUTPUT></p>
 
     <button onclick="register()">Register New User</button>
     <button onclick="userList()">Manage Users</button>
