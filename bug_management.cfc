@@ -36,6 +36,13 @@
                 <cfqueryparam value="#bugData.urgency#" cfsqltype="cf_sql_varchar">::bug_urgency,
                 <cfqueryparam value="#bugData.severity#" cfsqltype="cf_sql_varchar">::bug_severity
             );
+            INSERT INTO bug_history (date_time, action, comment, user_id)
+            VALUES (
+                CURRENT_TIMESTAMP,
+                <cfqueryparam value="input" cfsqltype="cf_sql_varchar">::bug_action,
+                <cfqueryparam value="new bug created" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#bugData.user_id#" cfsqltype="cf_sql_integer">
+            );
         </cfquery>
     </cffunction>
 
