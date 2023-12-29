@@ -141,6 +141,9 @@
                 <th>Date</th>
                 <th>Short Description</th>
                 <th>Status</th>
+                <th>Urgency</th>
+                <th>Severity</th>
+                <th>Assignee</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -151,6 +154,9 @@
                     <td><CFOUTPUT>#dateFormat(date, 'yyyy-mm-dd')#</CFOUTPUT></td>
                     <td><CFOUTPUT>#short_description#</CFOUTPUT></td>
                     <td><CFOUTPUT>#status#</CFOUTPUT></td>
+                    <td><CFOUTPUT>#urgency#</CFOUTPUT></td>
+                    <td><CFOUTPUT>#severity#</CFOUTPUT></td>
+                    <td><CFOUTPUT>#login#</CFOUTPUT></td>
                     <td>
                         <a href="editBug.cfm?bugId=#id#">Edit</a>
                         <!-- Add link to details page -->

@@ -6,7 +6,8 @@
     <cffunction name="getBugList" access="public" returntype="query">
         <cfset var bugList = "">
         <cfquery name="bugList" datasource="CFBugTracker">
-            SELECT * FROM bug;
+            SELECT * FROM bug
+            JOIN user_account on bug.user_id = user_account.user_id;
         </cfquery>
         <cfreturn bugList>
     </cffunction>
