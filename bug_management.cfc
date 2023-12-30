@@ -25,6 +25,7 @@
     <!-- Function to add a new bug -->
     <cffunction name="addBug" access="remote" returntype="void">
         <cfargument name="bugData" type="struct" required="true">
+        <cfset var insertResult = "">
         <cfquery name="insertResult" datasource="CFBugTracker">
             INSERT INTO bug (date, short_description, long_description, user_id, status, urgency, severity)
             VALUES (
@@ -57,6 +58,8 @@
         <cfargument name="previousStatus" type="string" required="true">
         <cfargument name="comments" type="string" required="true">
         <cfargument name="userId" type="numeric" required="true">
+
+        <cfset var action = "">
 
         <cfif previousStatus EQ "new" AND status EQ "open">
             <cfset action="assigning">
