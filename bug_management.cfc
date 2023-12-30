@@ -48,18 +48,15 @@
 
     <!-- Function to update an existing bug -->
     <cffunction name="updateBug" access="remote" returntype="void">
-        <cfargument name="bugData" type="struct" required="true">
+        <cfargument name="bugId" type="numeric" required="true">
+        <cfargument name="status" type="string" required="true">
+        <cfargument name="userId" type="numeric" required="true">
         <cfquery datasource="CFBugTracker">
             UPDATE bug
             SET
-                date = <cfqueryparam value="#bugData.date#" cfsqltype="cf_sql_date">,
-                short_description = <cfqueryparam value="#bugData.short_description#" cfsqltype="cf_sql_varchar">,
-                long_description = <cfqueryparam value="#bugData.long_description#" cfsqltype="cf_sql_text">,
-                user_id = <cfqueryparam value="#bugData.user_id#" cfsqltype="cf_sql_integer">,
-                status = <cfqueryparam value="#bugData.status#" cfsqltype="cf_sql_varchar">,
-                urgency = <cfqueryparam value="#bugData.urgency#" cfsqltype="cf_sql_varchar">,
-                severity = <cfqueryparam value="#bugData.severity#" cfsqltype="cf_sql_varchar">
-            WHERE bug_id = <cfqueryparam value="#bugData.id#" cfsqltype="cf_sql_integer">;
+                user_id = <cfqueryparam value="#userId#" cfsqltype="cf_sql_integer">,
+                status = <cfqueryparam value="#status#" cfsqltype="cf_sql_varchar">::bug_status
+            WHERE bug_id = <cfqueryparam value="#bugId#" cfsqltype="cf_sql_integer">;
         </cfquery>
     </cffunction>
 

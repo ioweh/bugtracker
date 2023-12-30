@@ -158,7 +158,7 @@
                     <td><CFOUTPUT>#severity#</CFOUTPUT></td>
                     <td><CFOUTPUT>#login#</CFOUTPUT></td>
                     <td>
-                        <a href="editBug.cfm?bugId=#id#">Edit</a>
+                        <a href="edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>">Edit</a>
                         <!-- Add link to details page -->
                     </td>
                 </tr>
