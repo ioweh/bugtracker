@@ -25,7 +25,7 @@
     <!-- Function to add a new bug -->
     <cffunction name="addBug" access="remote" returntype="void">
         <cfargument name="bugData" type="struct" required="true">
-        <cfquery datasource="CFBugTracker">
+        <cfquery name="insertResult" datasource="CFBugTracker">
             INSERT INTO bug (date, short_description, long_description, user_id, status, urgency, severity)
             VALUES (
                 <cfqueryparam value="#bugData.date#" cfsqltype="cf_sql_date">,
@@ -35,13 +35,17 @@
                 <cfqueryparam value="new" cfsqltype="cf_sql_varchar">::bug_status,
                 <cfqueryparam value="#bugData.urgency#" cfsqltype="cf_sql_varchar">::bug_urgency,
                 <cfqueryparam value="#bugData.severity#" cfsqltype="cf_sql_varchar">::bug_severity
-            );
-            INSERT INTO bug_history (date_time, action, comment, user_id)
+            )
+            RETURNING bug_id;
+        </cfquery>
+        <cfquery datasource="CFBugTracker">
+            INSERT INTO bug_history (date_time, action, comment, user_id, bug_id)
             VALUES (
                 CURRENT_TIMESTAMP,
                 <cfqueryparam value="input" cfsqltype="cf_sql_varchar">::bug_action,
                 <cfqueryparam value="new bug created" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="#bugData.user_id#" cfsqltype="cf_sql_integer">
+                <cfqueryparam value="#bugData.user_id#" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="#insertResult.bug_id#" cfsqltype="cf_sql_integer">
             );
         </cfquery>
     </cffunction>
@@ -50,13 +54,38 @@
     <cffunction name="updateBug" access="remote" returntype="void">
         <cfargument name="bugId" type="numeric" required="true">
         <cfargument name="status" type="string" required="true">
+        <cfargument name="previousStatus" type="string" required="true">
+        <cfargument name="comments" type="string" required="true">
         <cfargument name="userId" type="numeric" required="true">
+
+        <cfif previousStatus EQ "new" AND status EQ "open">
+            <cfset action="assigning">
+        <cfelseif status EQ "solved">
+            <cfset action="solving">
+        <cfelseif previousStatus EQ "solved" AND status EQ "open">
+            <cfset action="reopening">
+        <cfelseif previousStatus EQ "solved" AND status EQ "checked">
+            <cfset action="checking">
+        <cfelseif previousStatus EQ "checked" AND status EQ "open">
+            <cfset action="reopening">
+        <cfelseif status EQ "closed">
+            <cfset action="closing">
+        </cfif>
+
         <cfquery datasource="CFBugTracker">
             UPDATE bug
             SET
                 user_id = <cfqueryparam value="#userId#" cfsqltype="cf_sql_integer">,
                 status = <cfqueryparam value="#status#" cfsqltype="cf_sql_varchar">::bug_status
             WHERE bug_id = <cfqueryparam value="#bugId#" cfsqltype="cf_sql_integer">;
+            INSERT INTO bug_history (date_time, action, comment, user_id, bug_id)
+            VALUES (
+                CURRENT_TIMESTAMP,
+                <cfqueryparam value="#action#" cfsqltype="cf_sql_varchar">::bug_action,
+                <cfqueryparam value="#comments#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#userId#" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="#bugId#" cfsqltype="cf_sql_integer">
+            );
         </cfquery>
     </cffunction>
 

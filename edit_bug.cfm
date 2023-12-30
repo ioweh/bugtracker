@@ -11,18 +11,25 @@
 
     <!-- Check if the form is submitted -->
     <cfif structKeyExists(form, "submit")>
-        <cfparam name="form.bugId" type="numeric">
-        <cfparam name="form.status" type="string">
-        <cfparam name="form.comments" type="string">
-        <cfparam name="form.userId" type="numeric">
-        <cfset bugId = (isNumeric(form.bugId) ? int(form.bugId) : 0)>
-        <cfset userId = (isNumeric(form.userId) ? int(form.userId) : 0)>
+        <cfset trimmedComment = len(trim(form.comments))>
+        <cfif len(trim(form.comments)) NEQ 0>
+            <cfparam name="form.bugId" type="numeric">
+            <cfparam name="form.status" type="string">
+            <cfparam name="form.previousStatus" type="string">
+            <cfparam name="form.comments" type="string">
+            <cfparam name="form.userId" type="numeric">
+            <cfset bugId = (isNumeric(form.bugId) ? int(form.bugId) : 0)>
+            <cfset userId = (isNumeric(form.userId) ? int(form.userId) : 0)>
 
-        <!-- Call the BugService.cfc to update the bug -->
-        <cfset bugService = createObject("component", "bug_management")>
-        <cfset bugService.updateBug(bugId, form.status, userId)>
+            <!-- Call the BugService.cfc to update the bug -->
+            <cfset bugService = createObject("component", "bug_management")>
+            <cfset bugService.updateBug(bugId, form.status, form.previousStatus, form.comments, userId)>
 
-        <p>Bug updated successfully!</p>
+            <p>Bug updated successfully!</p>
+
+        <cfelse>
+            <p>Please fill the comment field</p>
+        </cfif>
 
     </cfif>
 
@@ -46,6 +53,7 @@
         <!-- Bug edit form -->
         <form action="" method="post">
             <input type="hidden" name="bugId" value="<CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT>">
+            <input type="hidden" name="previousStatus" value="<CFOUTPUT>#bugDetails.status#</CFOUTPUT>">
 
             <!-- Status field -->
             <label for="status">Status:</label>
