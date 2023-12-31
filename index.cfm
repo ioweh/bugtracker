@@ -65,50 +65,6 @@
                 sortTable(columnIndex);
             });
 
-            $(document).ready(function () {
-                // Get today's date in the format "YYYY-MM-DD"
-                var today = new Date().toISOString().split('T')[0];
-
-                // Set the value of the date input field to today
-                document.getElementById('date').value = today;
-
-                $("#addBugButton").click(function () {
-                    $("#addBugForm").toggle();
-                });
-            });
-
-            // Handle form submission
-            $("#addBugForm").submit(function (event) {
-                event.preventDefault();
-
-                // Collect form data
-                var formData = {
-                    date: $("#date").val(),
-                    shortDescription: $("#shortDescription").val(),
-                    longDescription: $("#longDescription").val(),
-                    user_id: "<CFOUTPUT>#session.loggedInUserId#</CFOUTPUT>",
-                    urgency: $("#priority").val(),
-                    severity: $("#severity").val(),
-                };
-
-                // Call addBug method of BugManagement.cfc
-                $.ajax({
-                    url: "bug_management.cfc?method=addBug",
-                    type: "POST",
-                    data: { bugData: JSON.stringify(formData) },
-                    success: function (response) {
-                        // Optionally handle success response
-                        console.log("Bug added successfully");
-                        // Reload the page to update the bug list
-                        location.reload();
-                    },
-                    error: function (error) {
-                        // Optionally handle error response
-                        console.error("Error adding bug:", error);
-                    }
-                });
-            });
-
         });
     </script>
 
@@ -146,38 +102,6 @@
             </cfloop>
         </tbody>
     </table>
-
-    <!-- Button and Form for Adding New Bugs -->
-    <button id="addBugButton">Add New Bug</button>
-
-    <form id="addBugForm" style="display: none;">
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required>
-
-        <label for="shortDescription">Short Description:</label>
-        <input type="text" id="shortDescription" name="shortDescription" required>
-
-        <label for="longDescription">Long Description:</label>
-        <input type="text" id="longDescription" name="longDescription" required>
-
-        <label for="priority">Select Priority:</label>
-        <select id="priority" name="priority">
-            <option value="very_urgent">Very Urgent</option>
-            <option value="urgent">Urgent</option>
-            <option value="non_urgent">Non Urgent</option>
-            <option value="not_at_all_urgent">Not at All Urgent</option>
-        </select>
-
-        <label for="severity">Select Severity:</label>
-        <select id="severity" name="severity">
-            <option value="disaster">Disaster</option>
-            <option value="critical">Critical</option>
-            <option value="non_critical">Non Critical</option>
-            <option value="request_for_change">Request for Change</option>
-        </select>
-
-        <button type="submit">Submit</button>
-    </form>
 
 </body>
 </html>

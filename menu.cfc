@@ -8,6 +8,7 @@
 
         <div class="menu">
             <div class="left-section">
+                <button class="menu-button" onclick="changeLocation('/bugtracker/new_bug')">New Bug</button>
                 <button class="menu-button" onclick="changeLocation('/bugtracker/index')">Bug List</button>
                 <button class="menu-button" onclick="changeLocation('/bugtracker/registration/register')">Register New User</button>
                 <button class="menu-button" onclick="changeLocation('/bugtracker/user_management/user_management')">Manage Users</button>
