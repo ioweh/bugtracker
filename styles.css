@@ -1,0 +1,34 @@
+/* styles.css */
+.menu {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px;
+    align-items: center;
+}
+
+.left-section {
+    display: flex;
+}
+
+.menu-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+/* Styles for the right section */
+.right-section {
+    text-align: right;
+}
+
+.welcome-message {
+    color: white;
+    font-size: 16px;
+}
+

@@ -1,15 +1,5 @@
 
-<script>
-    function register() {
-        window.location.href = "registration/register.cfm";
-    }
-    function userList() {
-        window.location.href = "user_management/user_management.cfm";
-    }
-    function logout() {
-        window.location.href = "logout.cfm";
-    }
-</script>
+<cfset menu = createObject("component", "menu")>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bug List</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         table {
             border-collapse: collapse;
@@ -35,17 +26,8 @@
     </style>
 </head>
 <body>
-    <h1>Hello, Bug Tracker!</h1>
 
-    <cfset userService = createObject("component", "user_management/user_management")>
-    <cfset currentUser = userService.getUserById(session.loggedInUserId)>
-
-    <p>Welcome, <CFOUTPUT>#currentUser.name# #currentUser.surname#!</CFOUTPUT></p>
-
-    <button onclick="register()">Register New User</button>
-    <button onclick="userList()">Manage Users</button>
-    <button onclick="logout()">Logout</button>
-
+    <CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
     <h1>Bug List</h1>
 
     <!-- Include jQuery for easier DOM manipulation -->
