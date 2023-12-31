@@ -7,14 +7,6 @@
 <head>
     <title>View Bug</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-        }
-
         .bug-details {
             background-color: #fff;
             border: 1px solid #ddd;
