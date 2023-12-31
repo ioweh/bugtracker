@@ -1,0 +1,131 @@
+<!-- view_bug.cfm -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Bug</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .bug-details {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .bug-details h2 {
+            color: #333;
+        }
+
+        .bug-details-item {
+            margin-bottom: 15px;
+        }
+
+        .bug-details-label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .bug-details-value {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Assuming you have a URL parameter for the bug ID, e.g., editBug.cfm?bugId=123 -->
+    <cfparam name="url.bugId" type="numeric">
+
+    <!-- Call the getBugHistory function to retrieve data -->
+    <cfset bugService = createObject("component", "bug_management")>
+    <cfset bugHistory = bugService.getBugHistory("#url.bugId#")>
+
+    <!-- Output the data in an HTML table -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date/Time</th>
+                <th>Action</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <cfoutput query="bugHistory">
+                <tr>
+                    <td>#bugHistory.id#</td>
+                    <td>#dateFormat(bugHistory.date_time, 'yyyy-mm-dd HH:mm:ss')#</td>
+                    <td>#bugHistory.action#</td>
+                    <td>#bugHistory.comment#</td>
+                </tr>
+            </cfoutput>
+        </tbody>
+    </table>
+
+    <!-- Fetch bug details from the database based on the bugId -->
+    <cfquery name="bugDetails" datasource="CFBugTracker">
+        SELECT bug_id, short_description, long_description, status, date, login
+        FROM bug
+        JOIN user_account on bug.user_id = user_account.user_id
+        WHERE bug_id = <cfqueryparam value="#url.bugId#" cfsqltype="cf_sql_integer">
+    </cfquery>
+
+    <!-- Check if the bug exists -->
+    <cfif bugDetails.recordCount EQ 0>
+        <p>Bug not found.</p>
+    <cfelse>
+    
+        <div class="bug-details">
+            <h2>View Bug Details</h2>
+
+            <div class="bug-details-item">
+                <div class="bug-details-label">ID:</div>
+                <div class="bug-details-value"><CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT></div>
+            </div>
+
+            <div class="bug-details-item">
+                <div class="bug-details-label">Description:</div>
+                <div class="bug-details-value"><CFOUTPUT>#bugDetails.short_description#</CFOUTPUT></div>
+            </div>
+
+            <div class="bug-details-item">
+                <div class="bug-details-label">Description:</div>
+                <div class="bug-details-value"><CFOUTPUT>#bugDetails.long_description#</CFOUTPUT></div>
+            </div>
+
+            <div class="bug-details-item">
+                <div class="bug-details-label">Status:</div>
+                <div class="bug-details-value"><CFOUTPUT>#bugDetails.status#</CFOUTPUT></div>
+            </div>
+
+            <div class="bug-details-item">
+                <div class="bug-details-label">Assigned User:</div>
+                <div class="bug-details-value"><CFOUTPUT>#bugDetails.login#</CFOUTPUT></div>
+            </div>
+
+            <div class="bug-details-item">
+                <div class="bug-details-label">Created Date:</div>
+                <div class="bug-details-value"><CFOUTPUT>#dateFormat(bugDetails.date, 'yyyy-mm-dd')#</CFOUTPUT></div>
+            </div>
+        </div>
+
+    </cfif>
+
+</body>
+</html>
+

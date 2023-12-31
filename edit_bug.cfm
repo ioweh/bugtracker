@@ -8,18 +8,13 @@
 <body>
 
     <h1>Edit Bug</h1>
-    <cffunction name="getBugHistory" returntype="query">
-        <cfset var bugHistory = "">
-        <cfquery name="bugHistory" datasource="CFBugTracker">
-            SELECT id, date_time, action, comment, user_id, bug_id
-            FROM bug_history
-            ORDER BY date_time ASC;
-        </cfquery>
-        <cfreturn bugHistory>
-    </cffunction>
+
+    <!-- Assuming you have a URL parameter for the bug ID, e.g., editBug.cfm?bugId=123 -->
+    <cfparam name="url.bugId" type="numeric">
 
     <!-- Call the getBugHistory function to retrieve data -->
-    <cfset bugHistory = getBugHistory()>
+    <cfset bugService = createObject("component", "bug_management")>
+    <cfset bugHistory = bugService.getBugHistory("#url.bugId#")>
 
     <!-- Output the data in an HTML table -->
     <table border="1">
@@ -67,8 +62,6 @@
 
     </cfif>
 
-    <!-- Assuming you have a URL parameter for the bug ID, e.g., editBug.cfm?bugId=123 -->
-    <cfparam name="url.bugId" type="numeric">
 
     <!-- Fetch bug details from the database based on the bugId -->
     <cfquery name="bugDetails" datasource="CFBugTracker">
@@ -131,7 +124,7 @@
 
             <!-- Comment field -->
             <label for="comments">Comments:</label>
-            <textarea name="comments" rows="4" cols="50"><CFOUTPUT></CFOUTPUT></textarea>
+            <textarea name="comments" rows="4" cols="50"></textarea>
             <br>
 
             <!-- List of users from user_account table -->

@@ -100,5 +100,18 @@
         </cfquery>
     </cffunction>
 
+    <!-- Function to get history of the bug -->
+    <cffunction name="getBugHistory" access="remote" returntype="query">
+        <cfargument name="bugId" type="numeric" required="true">
+        <cfset var bugHistory = "">
+        <cfquery name="bugHistory" datasource="CFBugTracker">
+            SELECT id, date_time, action, comment, user_id, bug_id
+            FROM bug_history
+            WHERE bug_id = <cfqueryparam value="#bugId#" cfsqltype="cf_sql_integer">
+            ORDER BY date_time ASC;
+        </cfquery>
+        <cfreturn bugHistory>
+    </cffunction>
+
 </cfcomponent>
 
