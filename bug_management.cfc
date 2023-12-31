@@ -17,7 +17,10 @@
         <cfargument name="bugId" type="numeric" required="true">
         <cfset var bugDetails = "">
         <cfquery name="bugDetails" datasource="CFBugTracker">
-            SELECT * FROM bug WHERE bug_id = <cfqueryparam value="#arguments.bugId#" cfsqltype="cf_sql_integer">;
+            SELECT bug_id, short_description, long_description, status, date, urgency, severity, login, bug.user_id
+            FROM bug
+            JOIN user_account on bug.user_id = user_account.user_id
+            WHERE bug_id = <cfqueryparam value="#arguments.bugId#" cfsqltype="cf_sql_integer">;
         </cfquery>
         <cfreturn bugDetails>
     </cffunction>

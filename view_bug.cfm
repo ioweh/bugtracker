@@ -77,13 +77,7 @@
         </tbody>
     </table>
 
-    <!-- Fetch bug details from the database based on the bugId -->
-    <cfquery name="bugDetails" datasource="CFBugTracker">
-        SELECT bug_id, short_description, long_description, status, date, login
-        FROM bug
-        JOIN user_account on bug.user_id = user_account.user_id
-        WHERE bug_id = <cfqueryparam value="#url.bugId#" cfsqltype="cf_sql_integer">
-    </cfquery>
+    <cfset bugDetails = bugService.getBugDetails("#url.bugId#")>
 
     <!-- Check if the bug exists -->
     <cfif bugDetails.recordCount EQ 0>

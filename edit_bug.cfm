@@ -51,7 +51,6 @@
             <cfset userId = (isNumeric(form.userId) ? int(form.userId) : 0)>
 
             <!-- Call the BugService.cfc to update the bug -->
-            <cfset bugService = createObject("component", "bug_management")>
             <cfset bugService.updateBug(bugId, form.status, form.previousStatus, form.comments, userId)>
 
             <p>Bug updated successfully!</p>
@@ -62,13 +61,7 @@
 
     </cfif>
 
-
-    <!-- Fetch bug details from the database based on the bugId -->
-    <cfquery name="bugDetails" datasource="CFBugTracker">
-        SELECT bug_id, short_description, status, user_id
-        FROM bug
-        WHERE bug_id = <cfqueryparam value="#url.bugId#" cfsqltype="cf_sql_integer">
-    </cfquery>
+    <cfset bugDetails = bugService.getBugDetails("#url.bugId#")>
 
     <!-- Check if the bug exists -->
     <cfif bugDetails.recordCount EQ 0>
