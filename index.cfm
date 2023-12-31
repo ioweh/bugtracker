@@ -159,7 +159,7 @@
                     <td><CFOUTPUT>#login#</CFOUTPUT></td>
                     <td>
                         <a href="edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>">Edit</a>
-                        <!-- Add link to details page -->
+                        <a href="view_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>">View</a>
                     </td>
                 </tr>
             </cfloop>
