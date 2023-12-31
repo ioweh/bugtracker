@@ -1,9 +1,12 @@
 
+<cfset menu = createObject("component", "bugtracker.menu")>
+
 <html>
 <head>
     <title>User Registration</title>
 </head>
 <body>
+    <CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
     <h2>User Registration</h2>
     <form action="process_registration.cfm" method="post">
         <label for="username">Login:</label>

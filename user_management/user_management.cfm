@@ -1,5 +1,9 @@
 <!-- user-management.cfm -->
 
+<cfset menu = createObject("component", "bugtracker.menu")>
+
+<CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
+
 <cfset userManagement = createObject("component", "user_management")>
 
 <!-- Check if a form is submitted for editing -->

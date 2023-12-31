@@ -1,5 +1,7 @@
 <!-- view_bug.cfm -->
 
+<cfset menu = createObject("component", "menu")>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +50,7 @@
     </style>
 </head>
 <body>
+    <CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
     <!-- Assuming you have a URL parameter for the bug ID, e.g., editBug.cfm?bugId=123 -->
     <cfparam name="url.bugId" type="numeric">
 
