@@ -9,6 +9,7 @@
 
     <h1>Edit Bug</h1>
     <cffunction name="getBugHistory" returntype="query">
+        <cfset var bugHistory = "">
         <cfquery name="bugHistory" datasource="CFBugTracker">
             SELECT id, date_time, action, comment, user_id, bug_id
             FROM bug_history
