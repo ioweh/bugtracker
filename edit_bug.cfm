@@ -8,6 +8,39 @@
 <body>
 
     <h1>Edit Bug</h1>
+    <cffunction name="getBugHistory" returntype="query">
+        <cfquery name="bugHistory" datasource="CFBugTracker">
+            SELECT id, date_time, action, comment, user_id, bug_id
+            FROM bug_history
+            ORDER BY date_time ASC;
+        </cfquery>
+        <cfreturn bugHistory>
+    </cffunction>
+
+    <!-- Call the getBugHistory function to retrieve data -->
+    <cfset bugHistory = getBugHistory()>
+
+    <!-- Output the data in an HTML table -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date/Time</th>
+                <th>Action</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <cfoutput query="bugHistory">
+                <tr>
+                    <td>#bugHistory.id#</td>
+                    <td>#dateFormat(bugHistory.date_time, 'yyyy-mm-dd HH:mm:ss')#</td>
+                    <td>#bugHistory.action#</td>
+                    <td>#bugHistory.comment#</td>
+                </tr>
+            </cfoutput>
+        </tbody>
+    </table>
 
     <!-- Check if the form is submitted -->
     <cfif structKeyExists(form, "submit")>
