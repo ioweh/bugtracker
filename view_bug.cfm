@@ -93,13 +93,23 @@
             </div>
 
             <div class="bug-details-item">
-                <div class="bug-details-label">Description:</div>
+                <div class="bug-details-label">Short Description:</div>
                 <div class="bug-details-value"><CFOUTPUT>#bugDetails.short_description#</CFOUTPUT></div>
             </div>
 
             <div class="bug-details-item">
-                <div class="bug-details-label">Description:</div>
+                <div class="bug-details-label">Long Description:</div>
                 <div class="bug-details-value"><CFOUTPUT>#bugDetails.long_description#</CFOUTPUT></div>
+            </div>
+
+            <div class="bug-details-item">
+                <div class="bug-details-label">Severity:</div>
+                <div class="bug-details-value"><CFOUTPUT>#bugDetails.severity#</CFOUTPUT></div>
+            </div>
+
+            <div class="bug-details-item">
+                <div class="bug-details-label">Urgency:</div>
+                <div class="bug-details-value"><CFOUTPUT>#bugDetails.urgency#</CFOUTPUT></div>
             </div>
 
             <div class="bug-details-item">
