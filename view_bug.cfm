@@ -12,10 +12,6 @@
             background-color: #f5f5f5;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
         }
 
@@ -27,7 +23,7 @@
             padding: 20px;
             max-width: 400px;
             width: 100%;
-            margin-top: 20px;
+            margin: 20px;
         }
 
         .bug-details h2 {
