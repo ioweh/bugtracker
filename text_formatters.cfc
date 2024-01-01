@@ -5,6 +5,7 @@
         <cfargument name="severityFromDatabase" type="string" required="true">
         
         <!-- Severity mapping -->
+        <cfset var severityMapping = "">
         <cfset severityMapping = {
             "disaster": "Disaster",
             "critical": "Critical",
@@ -23,6 +24,7 @@
         <cfargument name="urgencyFromDatabase" type="string" required="true">
 
         <!-- Urgency mapping -->
+        <cfset var urgencyMapping = "">
         <cfset urgencyMapping = {
             "very_urgent": "Very Urgent",
             "urgent": "Urgent",
