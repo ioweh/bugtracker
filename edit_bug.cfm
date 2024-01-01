@@ -49,31 +49,7 @@
     <!-- Assuming you have a URL parameter for the bug ID, e.g., editBug.cfm?bugId=123 -->
     <cfparam name="url.bugId" type="numeric">
 
-    <!-- Call the getBugHistory function to retrieve data -->
     <cfset bugService = createObject("component", "bug_management")>
-    <cfset bugHistory = bugService.getBugHistory("#url.bugId#")>
-
-    <!-- Output the data in an HTML table -->
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Date/Time</th>
-                <th>Action</th>
-                <th>Comment</th>
-            </tr>
-        </thead>
-        <tbody>
-            <cfoutput query="bugHistory">
-                <tr>
-                    <td>#bugHistory.id#</td>
-                    <td>#dateFormat(bugHistory.date_time, 'yyyy-mm-dd HH:mm:ss')#</td>
-                    <td>#bugHistory.action#</td>
-                    <td>#bugHistory.comment#</td>
-                </tr>
-            </cfoutput>
-        </tbody>
-    </table>
 
     <!-- Check if the form is submitted -->
     <cfif structKeyExists(form, "submit")>
@@ -105,10 +81,8 @@
         <p>Bug not found.</p>
     <cfelse>
     
-        <h2>Current bug status is: <CFOUTPUT>#bugDetails.status#</CFOUTPUT></h2>
-
         <div class="container">
-        <h2>Edit Bug</h2>
+        <h2>Edit Bug (current status is <CFOUTPUT>#bugDetails.status#</CFOUTPUT>)</h2>
         <!-- Bug edit form -->
             <form action="" method="post">
                 <input type="hidden" name="bugId" value="<CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT>">
@@ -180,6 +154,34 @@
                 <button type="submit" name="submit">Update Bug</button>
             </form>
         </div>
+
+        <hr>
+
+        <cfset bugHistory = bugService.getBugHistory("#url.bugId#")>
+
+        <h2>Bug history</h2>
+
+        <!-- Output the data in an HTML table -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date/Time</th>
+                    <th>Action</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <cfoutput query="bugHistory">
+                    <tr>
+                        <td>#bugHistory.id#</td>
+                        <td>#dateFormat(bugHistory.date_time, 'yyyy-mm-dd HH:mm:ss')#</td>
+                        <td>#bugHistory.action#</td>
+                        <td>#bugHistory.comment#</td>
+                    </tr>
+                </cfoutput>
+            </tbody>
+        </table>
 
     </cfif>
 
