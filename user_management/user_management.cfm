@@ -31,7 +31,7 @@
             <div class="container">
                 <h2>Edit User</h2>
                 <form action="user_management.cfm" method="post">
-                    <input type="hidden" name="userId" value="<CFOUTPUT>#userDetails.user_id#</CFOUTPUT>">
+                    <input type="hidden" name="userId" value="<CFOUTPUT>#userDetails.id#</CFOUTPUT>">
                     <label for="newLogin">Login:</label>
                     <input type="text" name="newLogin" value="<CFOUTPUT>#userDetails.login#</CFOUTPUT>">
                     <label for="newUsername">Name:</label>
@@ -78,17 +78,17 @@
             </tr>
             <cfoutput query="userList">
                 <tr>
-                    <td>#userList.user_id#</td>
+                    <td>#userList.id#</td>
                     <td>#userList.login#</td>
                     <td>#userList.name#</td>
                     <td>#userList.surname#</td>
                     <td>
                         <form action="user_management.cfm" method="post" style="display:inline;">
-                            <input type="hidden" name="editUser" value="#userList.user_id#">
+                            <input type="hidden" name="editUser" value="#userList.id#">
                             <button type="submit" class="action-button">Edit</button>
                         </form>
                         <form action="user_management.cfm" method="post" style="display:inline;">
-                            <input type="hidden" name="deleteUser" value="#userList.user_id#">
+                            <input type="hidden" name="deleteUser" value="#userList.id#">
                             <button type="submit" class="action-button delete-button">Delete</button>
                         </form>
                     </td>

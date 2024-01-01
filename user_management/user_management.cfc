@@ -6,21 +6,21 @@
     <cffunction name="listUsers" access="public" returntype="query">
         <cfset var userList = "">
         <cfquery name="userList" datasource="CFBugTracker">
-            SELECT user_id, login, name, surname, password
+            SELECT id, login, name, surname, password
             FROM user_account
             ORDER BY login;
         </cfquery>
         <cfreturn userList>
     </cffunction>
 
-    <!-- Function to get user details by user_id -->
+    <!-- Function to get user details by id -->
     <cffunction name="getUserById" access="public" returntype="query">
         <cfargument name="userId" type="numeric" required="true">
         <cfset var userDetails = "">
         <cfquery name="userDetails" datasource="CFBugTracker">
-            SELECT user_id, login, name, surname, password
+            SELECT id, login, name, surname, password
             FROM user_account
-            WHERE user_id = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
         </cfquery>
         <cfreturn userDetails>
     </cffunction>
@@ -32,7 +32,7 @@
         <cfset var hashedPassword=hash(password, "SHA-256")>
         <cfset var getUser = "">
         <cfquery name="getUser" datasource="CFBugTracker">
-            SELECT user_id
+            SELECT id
             FROM user_account
             WHERE login = <cfqueryparam value="#login#" cfsqltype="cf_sql_varchar">
             AND password = <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
@@ -57,17 +57,17 @@
                     <cfset var hashedPassword = hash(newPassword, "SHA-256")>
                     ,password = <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
                 </cfif>
-            WHERE user_id = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
         </cfquery>
     </cffunction>
 
-    <!-- Function to delete user by user_id -->
+    <!-- Function to delete user by id -->
     <cffunction name="deleteUser" access="public" returntype="void">
         <cfargument name="userId" type="numeric" required="true">
         
         <cfquery datasource="CFBugTracker">
             DELETE FROM user_account
-            WHERE user_id = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
         </cfquery>
     </cffunction>
 

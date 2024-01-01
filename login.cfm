@@ -19,7 +19,7 @@
     <!-- Perform authentication logic (replace this with your authentication logic) -->
     <cfif currentUser.recordCount>
         <!-- Store user information in session upon successful login -->
-        <cfset session.loggedInUserId = currentUser.user_id>
+        <cfset session.loggedInUserId = currentUser.id>
         <!-- Redirect to a secured page (e.g., index.cfm) -->
         <cflocation url="index.cfm" addtoken="false">
     <cfelse>

@@ -7,7 +7,7 @@
         <!-- Severity mapping -->
         <cfset var severityMapping = "">
         <cfset severityMapping = {
-            "disaster": "Disaster",
+            "blocker": "Blocker",
             "critical": "Critical",
             "non_critical": "Non-Critical",
             "request_for_change": "Request for Change"
@@ -29,7 +29,7 @@
             "very_urgent": "Very Urgent",
             "urgent": "Urgent",
             "non_urgent": "Non-Urgent",
-            "not_at_all_urgent": "Not Urgent at all"
+            "not_at_all_urgent": "Not at All Urgent"
         }>
 
         <!-- Get human-readable urgency using the urgency mapping -->

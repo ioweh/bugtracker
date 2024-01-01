@@ -27,6 +27,7 @@
     <!-- Check if the form is submitted -->
     <cfif structKeyExists(form, "submit")>
         <cfset trimmedComment = len(trim(form.comments))>
+
         <cfif len(trim(form.comments)) NEQ 0>
             <cfparam name="form.bugId" type="numeric">
             <cfparam name="form.status" type="string">
@@ -40,7 +41,7 @@
             <cfset bugService.updateBug(bugId, form.status, form.previousStatus, form.comments, userId)>
 
             <cfset bugDetails = bugService.getBugDetails("#url.bugId#")>
-
+            <cfset editMessage = "Edit Bug (current status is #bugDetails.status#)">
         <cfelse>
             <cfset editMessage = "Please fill the comment field">
         </cfif>
@@ -56,7 +57,7 @@
         <h2><CFOUTPUT>#editMessage#</CFOUTPUT></h2>
         <!-- Bug edit form -->
             <form action="" method="post">
-                <input type="hidden" name="bugId" value="<CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT>">
+                <input type="hidden" name="bugId" value="<CFOUTPUT>#bugDetails.id#</CFOUTPUT>">
                 <input type="hidden" name="previousStatus" value="<CFOUTPUT>#bugDetails.status#</CFOUTPUT>">
 
                 <!-- Status field -->
@@ -107,15 +108,15 @@
                 <select name="userId">
                     <!-- Fetch user list from the user_account table -->
                     <cfquery name="userList" datasource="CFBugTracker">
-                        SELECT user_id, name
+                        SELECT id, name
                         FROM user_account
                         ORDER BY name;
                     </cfquery>
 
                     <!-- Loop through the user list and populate the dropdown -->
                     <cfoutput query="userList">
-                        <option value="#userList.user_id#" 
-                            <cfif userList.user_id EQ bugDetails.user_id>selected</cfif>>
+                        <option value="#userList.id#" 
+                            <cfif userList.id EQ bugDetails.user_id>selected</cfif>>
                             #userList.name#
                         </option>
                     </cfoutput>

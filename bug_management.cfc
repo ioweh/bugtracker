@@ -7,7 +7,7 @@
         <cfset var bugList = "">
         <cfquery name="bugList" datasource="CFBugTracker">
             SELECT * FROM bug
-            JOIN user_account on bug.user_id = user_account.user_id;
+            JOIN user_account on bug.user_id = user_account.id;
         </cfquery>
         <cfreturn bugList>
     </cffunction>
@@ -17,10 +17,10 @@
         <cfargument name="bugId" type="numeric" required="true">
         <cfset var bugDetails = "">
         <cfquery name="bugDetails" datasource="CFBugTracker">
-            SELECT bug_id, short_description, long_description, status, date, urgency, severity, login, bug.user_id
+            SELECT bug.id, short_description, long_description, status, date, urgency, severity, login, bug.user_id
             FROM bug
-            JOIN user_account on bug.user_id = user_account.user_id
-            WHERE bug_id = <cfqueryparam value="#arguments.bugId#" cfsqltype="cf_sql_integer">;
+            JOIN user_account on bug.user_id = user_account.id
+            WHERE bug.id = <cfqueryparam value="#arguments.bugId#" cfsqltype="cf_sql_integer">;
         </cfquery>
         <cfreturn bugDetails>
     </cffunction>
@@ -40,7 +40,7 @@
                 <cfqueryparam value="#bugData.urgency#" cfsqltype="cf_sql_varchar">::bug_urgency,
                 <cfqueryparam value="#bugData.severity#" cfsqltype="cf_sql_varchar">::bug_severity
             )
-            RETURNING bug_id;
+            RETURNING id;
         </cfquery>
         <cfquery datasource="CFBugTracker">
             INSERT INTO bug_history (date_time, action, comment, user_id, bug_id)
@@ -49,7 +49,7 @@
                 <cfqueryparam value="input" cfsqltype="cf_sql_varchar">::bug_action,
                 <cfqueryparam value="new bug created" cfsqltype="cf_sql_varchar">,
                 <cfqueryparam value="#bugData.user_id#" cfsqltype="cf_sql_integer">,
-                <cfqueryparam value="#insertResult.bug_id#" cfsqltype="cf_sql_integer">
+                <cfqueryparam value="#insertResult.id#" cfsqltype="cf_sql_integer">
             );
         </cfquery>
     </cffunction>
@@ -83,7 +83,7 @@
             SET
                 user_id = <cfqueryparam value="#userId#" cfsqltype="cf_sql_integer">,
                 status = <cfqueryparam value="#status#" cfsqltype="cf_sql_varchar">::bug_status
-            WHERE bug_id = <cfqueryparam value="#bugId#" cfsqltype="cf_sql_integer">;
+            WHERE id = <cfqueryparam value="#bugId#" cfsqltype="cf_sql_integer">;
             INSERT INTO bug_history (date_time, action, comment, user_id, bug_id)
             VALUES (
                 CURRENT_TIMESTAMP,
@@ -99,7 +99,7 @@
     <cffunction name="deleteBug" access="remote" returntype="void">
         <cfargument name="bugId" type="numeric" required="true">
         <cfquery datasource="CFBugTracker">
-            DELETE FROM bug WHERE bug_id = <cfqueryparam value="#arguments.bugId#" cfsqltype="cf_sql_integer">;
+            DELETE FROM bug WHERE id = <cfqueryparam value="#arguments.bugId#" cfsqltype="cf_sql_integer">;
         </cfquery>
     </cffunction>
 

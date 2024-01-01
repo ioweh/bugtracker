@@ -102,7 +102,7 @@
         <tbody>
             <cfloop query="#bugList#">
                 <tr>
-                    <td><CFOUTPUT>#bug_id#</CFOUTPUT></td>
+                    <td><CFOUTPUT>#id#</CFOUTPUT></td>
                     <td><CFOUTPUT>#dateFormat(date, 'yyyy-mm-dd')#</CFOUTPUT></td>
                     <td><CFOUTPUT>#short_description#</CFOUTPUT></td>
                     <td><CFOUTPUT>#textFormatters.capitalizeFirstLetter(status)#</CFOUTPUT></td>
@@ -110,9 +110,9 @@
                     <td><CFOUTPUT>#textFormatters.getHumanReadableSeverity(severity)#</CFOUTPUT></td>
                     <td><CFOUTPUT>#login#</CFOUTPUT></td>
                     <td>
-                    <button class="action-button" onclick="changeActionLocation('/bugtracker/edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">Edit</button>
-                    <button class="action-button" onclick="changeActionLocation('/bugtracker/view_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">View</button>
-                    <button class="action-button delete-button" onclick="deleteBug('<CFOUTPUT>#bug_id#</CFOUTPUT>')">Delete</button>
+                    <button class="action-button" onclick="changeActionLocation('/bugtracker/edit_bug.cfm?bugId=<CFOUTPUT>#id#</CFOUTPUT>')">Edit</button>
+                    <button class="action-button" onclick="changeActionLocation('/bugtracker/view_bug.cfm?bugId=<CFOUTPUT>#id#</CFOUTPUT>')">View</button>
+                    <button class="action-button delete-button" onclick="deleteBug('<CFOUTPUT>#id#</CFOUTPUT>')">Delete</button>
                     </td>
                 </tr>
             </cfloop>

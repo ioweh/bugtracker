@@ -41,7 +41,7 @@
 
             <label for="severity">Severity:</label>
             <select id="severity" name="severity" required>
-                <option value="disaster">Disaster</option>
+                <option value="blocker">Blocker</option>
                 <option value="critical">Critical</option>
                 <option value="non_critical">Non Critical</option>
                 <option value="request_for_change">Request for Change</option>
@@ -52,15 +52,15 @@
             <select id="userId" name="userId" required>
                 <!-- Fetch user list from the user_account table -->
                 <cfquery name="userList" datasource="CFBugTracker">
-                    SELECT user_id, name
+                    SELECT id, name
                     FROM user_account
                     ORDER BY name;
                 </cfquery>
 
                 <!-- Loop through the user list and populate the dropdown -->
                 <cfoutput query="userList">
-                    <option value="#userList.user_id#"
-                        <cfif userList.user_id EQ session.loggedInUserId>selected</cfif>>
+                    <option value="#userList.id#"
+                        <cfif userList.id EQ session.loggedInUserId>selected</cfif>>
                         #userList.name#
                     </option>
                 </cfoutput>

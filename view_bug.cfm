@@ -58,7 +58,7 @@
 
             <div class="bug-details-item">
                 <div class="bug-details-label">ID:</div>
-                <div class="bug-details-value"><CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT></div>
+                <div class="bug-details-value"><CFOUTPUT>#bugDetails.id#</CFOUTPUT></div>
             </div>
 
             <div class="bug-details-item">
