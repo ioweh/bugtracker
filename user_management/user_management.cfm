@@ -37,6 +37,29 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +94,6 @@
                     <button type="submit">Save</button>
                 </form>
             </div>
-            <hr>
         </cfif>
     </cfif>
 
@@ -94,7 +116,7 @@
     </cfif>
 
     <!-- Display the list of users -->
-    <h2>List of Users</h2>
+    <h2 style="text-align: center">List of Users</h2>
     <cfset userList = userManagement.listUsers()>
     <cfif userList.recordCount>
         <table border="1">

@@ -9,25 +9,34 @@
     <title>Bug List</title>
     <style>
         table {
+            width: 80%;
+            margin: 20px auto;
             border-collapse: collapse;
-            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px 15px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
 
         th {
+            background-color: #4CAF50;
+            color: white;
             cursor: pointer;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
         }
     </style>
 </head>
 <body>
 
     <CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
-    <h1>Bug List</h1>
+    <h1 style="text-align: center">Bug List</h1>
 
     <!-- Include jQuery for easier DOM manipulation -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

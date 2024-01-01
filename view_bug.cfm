@@ -35,6 +35,29 @@
         .bug-details-value {
             color: #333;
         }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
 <body>
@@ -94,12 +117,10 @@
             </div>
         </div>
 
-        <hr>
-
         <!-- Call the getBugHistory function to retrieve data -->
         <cfset bugHistory = bugService.getBugHistory("#url.bugId#")>
 
-        <h2>Bug history</h2>
+        <h2 style="text-align: center">Bug history</h2>
 
         <!-- Output the data in an HTML table -->
         <table border="1">
