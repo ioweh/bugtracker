@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/bugtracker/styles.css">
     <style>
         .container {
-            height: 600px;
+            height: 650px;
         }
     </style>
 </head>
@@ -47,6 +47,25 @@
                 <option value="request_for_change">Request for Change</option>
             </select>
 
+            <!-- List of users from user_account table -->
+            <label for="userId">Assign to User:</label>
+            <select id="userId" name="userId" required>
+                <!-- Fetch user list from the user_account table -->
+                <cfquery name="userList" datasource="CFBugTracker">
+                    SELECT user_id, name
+                    FROM user_account
+                    ORDER BY name;
+                </cfquery>
+
+                <!-- Loop through the user list and populate the dropdown -->
+                <cfoutput query="userList">
+                    <option value="#userList.user_id#"
+                        <cfif userList.user_id EQ session.loggedInUserId>selected</cfif>>
+                        #userList.name#
+                    </option>
+                </cfoutput>
+            </select>
+
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -64,13 +83,14 @@
             // Handle form submission
             $("#addBugForm").submit(function (event) {
                 event.preventDefault();
+                console.log($("#userId").val());
 
                 // Collect form data
                 var formData = {
                     date: $("#date").val(),
                     shortDescription: $("#shortDescription").val(),
                     longDescription: $("#longDescription").val(),
-                    user_id: "<CFOUTPUT>#session.loggedInUserId#</CFOUTPUT>",
+                    user_id: $("#userId").val(),
                     urgency: $("#priority").val(),
                     severity: $("#severity").val(),
                 };
