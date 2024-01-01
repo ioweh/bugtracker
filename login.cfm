@@ -1,4 +1,13 @@
 
+<cfset loginMessage = "Logging in">
+
+<cfparam name="url.logout" default="">
+
+<cfif len(url.logout)>
+    <cfset structClear(session)>
+    <cfset loginMessage = "Logged out. Log in again.">
+</cfif>
+
 <cfif isDefined("form.loginButton")>
     <!-- Check login credentials -->
     <cfset login = form.login>
@@ -14,56 +23,19 @@
         <!-- Redirect to a secured page (e.g., index.cfm) -->
         <cflocation url="index.cfm" addtoken="false">
     <cfelse>
-        <p>Invalid username or password. Please try again.</p>
+        <cfset loginMessage = "Invalid username or password.">
     </cfif>
-</cfif>
-
-<cfparam name="url.logout" default="">
-<cfset loginMessage = "Logging in">
-
-<cfif len(url.logout)>
-    <cfset structClear(session)>
-    <cfset loginMessage = "Logged out. Log in again.">
 </cfif>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login</title>
+        <link rel="stylesheet" href="/bugtracker/styles.css">
         <style>
-
-        .container {
-            width: 500px;
-            height: 300px;
-            margin: 20px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+            .container {
+                height: 300px;
+            }
     </style>
 </head>
 <body>
