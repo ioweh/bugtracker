@@ -85,7 +85,7 @@
 
         });
 
-        function changeLocation(page) {
+        function changeActionLocation(page) {
             window.location.href = page;
         }
     </script>
@@ -117,8 +117,8 @@
                     <td><CFOUTPUT>#severity#</CFOUTPUT></td>
                     <td><CFOUTPUT>#login#</CFOUTPUT></td>
                     <td>
-                    <button class="action-button" onclick="changeLocation('/bugtracker/edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">Edit</button>
-                    <button class="action-button" onclick="changeLocation('/bugtracker/view_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">View</button>
+                    <button class="action-button" onclick="changeActionLocation('/bugtracker/edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">Edit</button>
+                    <button class="action-button" onclick="changeActionLocation('/bugtracker/view_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">View</button>
                     </td>
                 </tr>
             </cfloop>
