@@ -83,7 +83,6 @@
             // Handle form submission
             $("#addBugForm").submit(function (event) {
                 event.preventDefault();
-                console.log($("#userId").val());
 
                 // Collect form data
                 var formData = {
