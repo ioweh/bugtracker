@@ -5,6 +5,42 @@
 <html>
 <head>
     <title>Edit Bug</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 350px;
+            margin: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -70,81 +106,80 @@
         <p>Bug not found.</p>
     <cfelse>
     
-        <h2>Bug status is: <CFOUTPUT>#bugDetails.status#</CFOUTPUT></h2>
+        <h2>Current bug status is: <CFOUTPUT>#bugDetails.status#</CFOUTPUT></h2>
 
+        <div class="container">
         <!-- Bug edit form -->
-        <form action="" method="post">
-            <input type="hidden" name="bugId" value="<CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT>">
-            <input type="hidden" name="previousStatus" value="<CFOUTPUT>#bugDetails.status#</CFOUTPUT>">
+            <form action="" method="post">
+                <input type="hidden" name="bugId" value="<CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT>">
+                <input type="hidden" name="previousStatus" value="<CFOUTPUT>#bugDetails.status#</CFOUTPUT>">
 
-            <!-- Status field -->
-            <label for="status">Status:</label>
-            <cfswitch expression="#bugDetails.status#">
-                <cfcase value="new">
-                    <select name="status">
-                        <option value="open">Open</option>
-                    </select>
-                </cfcase>
-                <cfcase value="open">
-                    <select name="status">
-                        <option value="solved">Solved</option>
-                    </select>
-                </cfcase>
-                <cfcase value="solved">
-                    <select name="status">
-                        <option value="open">Open</option>
-                        <option value="checked">Checked</option>
-                    </select>
-                </cfcase>
-                <cfcase value="checked">
-                    <select name="status">
-                        <option value="open">Open</option>
-                        <option value="closed">Closed</option>
-                    </select>
-                </cfcase>
-                <cfcase value="closed">
-                    Closed
-                </cfcase>
-                <cfdefaultcase>
-                    <!-- Default dropdown with all possible values -->
-                    <select name="status">
-                        <option value="new">New</option>
-                        <option value="open">Open</option>
-                        <option value="solved">Solved</option>
-                        <option value="checked">Checked</option>
-                    </select>
-                </cfdefaultcase>
-            </cfswitch>
-            <br>
+                <!-- Status field -->
+                <label for="status">Status:</label>
+                <cfswitch expression="#bugDetails.status#">
+                    <cfcase value="new">
+                        <select name="status">
+                            <option value="open">Open</option>
+                        </select>
+                    </cfcase>
+                    <cfcase value="open">
+                        <select name="status">
+                            <option value="solved">Solved</option>
+                        </select>
+                    </cfcase>
+                    <cfcase value="solved">
+                        <select name="status">
+                            <option value="open">Open</option>
+                            <option value="checked">Checked</option>
+                        </select>
+                    </cfcase>
+                    <cfcase value="checked">
+                        <select name="status">
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </cfcase>
+                    <cfcase value="closed">
+                        Closed
+                    </cfcase>
+                    <cfdefaultcase>
+                        <!-- Default dropdown with all possible values -->
+                        <select name="status">
+                            <option value="new">New</option>
+                            <option value="open">Open</option>
+                            <option value="solved">Solved</option>
+                            <option value="checked">Checked</option>
+                        </select>
+                    </cfdefaultcase>
+                </cfswitch>
 
-            <!-- Comment field -->
-            <label for="comments">Comments:</label>
-            <textarea name="comments" rows="4" cols="50"></textarea>
-            <br>
+                <!-- Comment field -->
+                <label for="comments">Comments:</label>
+                <textarea name="comments" rows="4" cols="50"></textarea>
 
-            <!-- List of users from user_account table -->
-            <label for="userId">Assign to User:</label>
-            <select name="userId">
-                <!-- Fetch user list from the user_account table -->
-                <cfquery name="userList" datasource="CFBugTracker">
-                    SELECT user_id, name
-                    FROM user_account
-                    ORDER BY name;
-                </cfquery>
+                <!-- List of users from user_account table -->
+                <label for="userId">Assign to User:</label>
+                <select name="userId">
+                    <!-- Fetch user list from the user_account table -->
+                    <cfquery name="userList" datasource="CFBugTracker">
+                        SELECT user_id, name
+                        FROM user_account
+                        ORDER BY name;
+                    </cfquery>
 
-                <!-- Loop through the user list and populate the dropdown -->
-                <cfoutput query="userList">
-                    <option value="#userList.user_id#" 
-                        <cfif userList.user_id EQ bugDetails.user_id>selected</cfif>>
-                        #userList.name#
-                    </option>
-                </cfoutput>
-            </select>
-            <br>
+                    <!-- Loop through the user list and populate the dropdown -->
+                    <cfoutput query="userList">
+                        <option value="#userList.user_id#" 
+                            <cfif userList.user_id EQ bugDetails.user_id>selected</cfif>>
+                            #userList.name#
+                        </option>
+                    </cfoutput>
+                </select>
 
-            <!-- Submit button -->
-            <input type="submit" name="submit" value="Update Bug">
-        </form>
+                <!-- Submit button -->
+                <button type="submit" name="submit">Update Bug</button>
+            </form>
+        </div>
 
     </cfif>
 
