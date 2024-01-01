@@ -89,7 +89,7 @@
             <!-- Call the BugService.cfc to update the bug -->
             <cfset bugService.updateBug(bugId, form.status, form.previousStatus, form.comments, userId)>
 
-            <p>Bug updated successfully!</p>
+            <cfset bugDetails = bugService.getBugDetails("#url.bugId#")>
 
         <cfelse>
             <p>Please fill the comment field</p>
