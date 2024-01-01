@@ -12,7 +12,7 @@
                 <button class="menu-button" onclick="changeLocation('/bugtracker/index')">Bug List</button>
                 <button class="menu-button" onclick="changeLocation('/bugtracker/registration/register')">Register New User</button>
                 <button class="menu-button" onclick="changeLocation('/bugtracker/user_management/user_management')">Manage Users</button>
-                <button class="menu-button" onclick="changeLocation('/bugtracker/logout')">Logout</button>
+                <button class="menu-button" onclick="logout('/bugtracker/login')">Logout</button>
             </div>
             <div class="right-section">
                 <div class="welcome-message">Welcome, <CFOUTPUT>#currentUser.name# #currentUser.surname#!</CFOUTPUT></div>
@@ -21,6 +21,9 @@
         <script>
             function changeLocation(page) {
                 window.location.href = page + '.cfm';
+            }
+            function logout(page) {
+                window.location.href = page + '.cfm?logout=true';
             }
         </script>
         <style>

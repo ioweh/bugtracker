@@ -18,6 +18,14 @@
     </cfif>
 </cfif>
 
+<cfparam name="url.logout" default="">
+<cfset loginMessage = "Logging in">
+
+<cfif len(url.logout)>
+    <cfset structClear(session)>
+    <cfset loginMessage = "Logged out. Log in again.">
+</cfif>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +68,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Logging in</h2>
+        <h2><CFOUTPUT>#loginMessage#</CFOUTPUT></h2>
         <form method="post" action="#cgi.script_name#">
             <label for="login">Login:</label>
             <input type="text" name="login" required><br>
