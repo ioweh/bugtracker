@@ -7,27 +7,7 @@
     <link rel="stylesheet" href="/bugtracker/styles.css">
     <style>
         .container {
-            width: 500px;
             height: 450px;
-            margin: 20px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .container input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
         }
 
         .delete-button {
