@@ -66,3 +66,9 @@ button {
     cursor: pointer;
 }
 
+/* Style for a disabled button */
+button:disabled {
+    background-color: #808080; /* Gray background color for disabled state */
+    cursor: not-allowed; /* Change cursor to not-allowed for disabled state */
+}
+

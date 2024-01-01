@@ -122,7 +122,7 @@
                 </select>
 
                 <!-- Submit button -->
-                <button type="submit" name="submit">Update Bug</button>
+                <button type="submit" name="submit" <cfif bugDetails.status EQ "closed">disabled</cfif>>Update Bug</button>
             </form>
         </div>
 
