@@ -50,6 +50,8 @@
     <cfif bugDetails.recordCount EQ 0>
         <p>Bug not found.</p>
     <cfelse>
+        
+        <cfset textFormatters = createObject("component", "text_formatters")>
     
         <div class="bug-details">
             <h2>View Bug Details</h2>
@@ -71,17 +73,17 @@
 
             <div class="bug-details-item">
                 <div class="bug-details-label">Severity:</div>
-                <div class="bug-details-value"><CFOUTPUT>#bugDetails.severity#</CFOUTPUT></div>
+                <div class="bug-details-value"><CFOUTPUT>#textFormatters.getHumanReadableSeverity(bugDetails.severity)#</CFOUTPUT></div>
             </div>
 
             <div class="bug-details-item">
                 <div class="bug-details-label">Urgency:</div>
-                <div class="bug-details-value"><CFOUTPUT>#bugDetails.urgency#</CFOUTPUT></div>
+                <div class="bug-details-value"><CFOUTPUT>#textFormatters.getHumanReadableUrgency(bugDetails.urgency)#</CFOUTPUT></div>
             </div>
 
             <div class="bug-details-item">
                 <div class="bug-details-label">Status:</div>
-                <div class="bug-details-value"><CFOUTPUT>#bugDetails.status#</CFOUTPUT></div>
+                <div class="bug-details-value"><CFOUTPUT>#textFormatters.capitalizeFirstLetter(bugDetails.status)#</CFOUTPUT></div>
             </div>
 
             <div class="bug-details-item">

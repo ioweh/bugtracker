@@ -65,6 +65,8 @@
     <cfset bugService = createObject("component", "bug_management")>
     <cfset bugList = bugService.getBugList()>
 
+    <cfset textFormatters = createObject("component", "text_formatters")>
+
     <table id="bugTable">
         <thead>
             <tr>
@@ -84,9 +86,9 @@
                     <td><CFOUTPUT>#bug_id#</CFOUTPUT></td>
                     <td><CFOUTPUT>#dateFormat(date, 'yyyy-mm-dd')#</CFOUTPUT></td>
                     <td><CFOUTPUT>#short_description#</CFOUTPUT></td>
-                    <td><CFOUTPUT>#status#</CFOUTPUT></td>
-                    <td><CFOUTPUT>#urgency#</CFOUTPUT></td>
-                    <td><CFOUTPUT>#severity#</CFOUTPUT></td>
+                    <td><CFOUTPUT>#textFormatters.capitalizeFirstLetter(status)#</CFOUTPUT></td>
+                    <td><CFOUTPUT>#textFormatters.getHumanReadableUrgency(urgency)#</CFOUTPUT></td>
+                    <td><CFOUTPUT>#textFormatters.getHumanReadableSeverity(severity)#</CFOUTPUT></td>
                     <td><CFOUTPUT>#login#</CFOUTPUT></td>
                     <td>
                     <button class="action-button" onclick="changeActionLocation('/bugtracker/edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">Edit</button>
