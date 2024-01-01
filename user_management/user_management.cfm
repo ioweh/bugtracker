@@ -9,10 +9,6 @@
         .container {
             height: 450px;
         }
-
-        .delete-button {
-            background-color: red;
-        }
     </style>
 </head>
 <body>

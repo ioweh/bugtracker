@@ -1,5 +1,7 @@
 
 <cfset menu = createObject("component", "menu")>
+<cfset bugService = createObject("component", "bug_management")>
+<cfset bugList = bugService.getBugList()>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,13 +59,30 @@
 
         });
 
+        function deleteBug(bugId) {
+            // Use AJAX to call the CFC method
+            $.ajax({
+                url: 'bug_management.cfc',
+                data: {
+                    method: 'deleteBug',
+                    bugId,
+                },
+                type: 'POST',
+                dataType: 'text',
+                success: function(response) {
+                    // reload the page
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert('Error calling CFC method');
+                }
+            });
+        }
+
         function changeActionLocation(page) {
             window.location.href = page;
         }
     </script>
-
-    <cfset bugService = createObject("component", "bug_management")>
-    <cfset bugList = bugService.getBugList()>
 
     <cfset textFormatters = createObject("component", "text_formatters")>
 
@@ -93,6 +112,7 @@
                     <td>
                     <button class="action-button" onclick="changeActionLocation('/bugtracker/edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">Edit</button>
                     <button class="action-button" onclick="changeActionLocation('/bugtracker/view_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">View</button>
+                    <button class="action-button delete-button" onclick="deleteBug('<CFOUTPUT>#bug_id#</CFOUTPUT>')">Delete</button>
                     </td>
                 </tr>
             </cfloop>

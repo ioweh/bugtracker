@@ -72,3 +72,7 @@ button:disabled {
     cursor: not-allowed; /* Change cursor to not-allowed for disabled state */
 }
 
+.delete-button {
+    background-color: red;
+}
+
