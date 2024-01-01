@@ -21,6 +21,9 @@
 
     <cfset bugService = createObject("component", "bug_management")>
 
+    <cfset bugDetails = bugService.getBugDetails("#url.bugId#")>
+    <cfset editMessage = "Edit Bug (current status is #bugDetails.status#)">
+
     <!-- Check if the form is submitted -->
     <cfif structKeyExists(form, "submit")>
         <cfset trimmedComment = len(trim(form.comments))>
@@ -39,12 +42,10 @@
             <cfset bugDetails = bugService.getBugDetails("#url.bugId#")>
 
         <cfelse>
-            <p>Please fill the comment field</p>
+            <cfset editMessage = "Please fill the comment field">
         </cfif>
 
     </cfif>
-
-    <cfset bugDetails = bugService.getBugDetails("#url.bugId#")>
 
     <!-- Check if the bug exists -->
     <cfif bugDetails.recordCount EQ 0>
@@ -52,7 +53,7 @@
     <cfelse>
     
         <div class="container">
-        <h2>Edit Bug (current status is <CFOUTPUT>#bugDetails.status#</CFOUTPUT>)</h2>
+        <h2><CFOUTPUT>#editMessage#</CFOUTPUT></h2>
         <!-- Bug edit form -->
             <form action="" method="post">
                 <input type="hidden" name="bugId" value="<CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT>">
