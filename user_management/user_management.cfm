@@ -60,6 +60,18 @@
         tr:hover {
             background-color: #f5f5f5;
         }
+
+        .action-button {
+            background-color: ##4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .delete-button {
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -136,11 +148,11 @@
                     <td>
                         <form action="user_management.cfm" method="post" style="display:inline;">
                             <input type="hidden" name="editUser" value="#userList.user_id#">
-                            <input type="submit" value="Edit">
+                            <button type="submit" class="action-button">Edit</button>
                         </form>
                         <form action="user_management.cfm" method="post" style="display:inline;">
                             <input type="hidden" name="deleteUser" value="#userList.user_id#">
-                            <input type="submit" value="Delete">
+                            <button type="submit" class="action-button delete-button">Delete</button>
                         </form>
                     </td>
                 </tr>
