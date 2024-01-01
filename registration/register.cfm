@@ -8,7 +8,7 @@
 
         .container {
             width: 500px;
-            height: 370px;
+            height: 450px;
             margin: 20px;
             background-color: #fff;
             padding: 20px;
@@ -42,8 +42,8 @@
 </head>
 <body>
     <CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
-    <h2>User Registration</h2>
     <div class="container">
+        <h2>User Registration</h2>
         <form action="process_registration.cfm" method="post">
             <label for="username">Login:</label>
             <input type="text" name="login" required><br>

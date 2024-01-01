@@ -8,7 +8,7 @@
     <style>
         .container {
             width: 500px;
-            height: 350px;
+            height: 420px;
             margin: 20px;
             background-color: #fff;
             padding: 20px;
@@ -45,7 +45,6 @@
 <body>
 
     <CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
-    <h1>Edit Bug</h1>
 
     <!-- Assuming you have a URL parameter for the bug ID, e.g., editBug.cfm?bugId=123 -->
     <cfparam name="url.bugId" type="numeric">
@@ -109,6 +108,7 @@
         <h2>Current bug status is: <CFOUTPUT>#bugDetails.status#</CFOUTPUT></h2>
 
         <div class="container">
+        <h2>Edit Bug</h2>
         <!-- Bug edit form -->
             <form action="" method="post">
                 <input type="hidden" name="bugId" value="<CFOUTPUT>#bugDetails.bug_id#</CFOUTPUT>">
