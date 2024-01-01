@@ -7,38 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bug List</title>
+    <link rel="stylesheet" href="/bugtracker/styles.css">
     <style>
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
         th {
-            background-color: #4CAF50;
-            color: white;
             cursor: pointer;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .action-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            padding: 10px 20px;
         }
     </style>
 </head>

@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>User Management</title>
+    <link rel="stylesheet" href="/bugtracker/styles.css">
     <style>
         .container {
             width: 500px;
@@ -29,46 +30,6 @@
             box-sizing: border-box;
         }
 
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .action-button {
-            background-color: ##4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
         .delete-button {
             background-color: red;
         }

@@ -1,7 +1,7 @@
 <!-- menu.cfc -->
 
 <cfcomponent>
-    <cfset userService = createObject("component", "user_management/user_management")>
+    <cfset userService = createObject("component", "/bugtracker/user_management/user_management")>
     <cfset currentUser = userService.getUserById(session.loggedInUserId)>
 
     <cffunction name="renderMenu" output="true">
