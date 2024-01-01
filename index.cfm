@@ -31,6 +31,15 @@
         tr:hover {
             background-color: #f5f5f5;
         }
+
+        .action-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
     </style>
 </head>
 <body>
@@ -75,6 +84,10 @@
             });
 
         });
+
+        function changeLocation(page) {
+            window.location.href = page;
+        }
     </script>
 
     <cfset bugService = createObject("component", "bug_management")>
@@ -104,8 +117,8 @@
                     <td><CFOUTPUT>#severity#</CFOUTPUT></td>
                     <td><CFOUTPUT>#login#</CFOUTPUT></td>
                     <td>
-                        <a href="edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>">Edit</a>
-                        <a href="view_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>">View</a>
+                    <button class="action-button" onclick="changeLocation('/bugtracker/edit_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">Edit</button>
+                    <button class="action-button" onclick="changeLocation('/bugtracker/view_bug.cfm?bugId=<CFOUTPUT>#bug_id#</CFOUTPUT>')">View</button>
                     </td>
                 </tr>
             </cfloop>
