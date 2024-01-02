@@ -9,8 +9,19 @@
 <cfset userManagement.addUser(form.login, form.name, form.surname, form.password)>
 
 <cfset menu = createObject("component", "bugtracker.menu")>
-<CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
 
-<h2 style="text-align: center">Registration Successful</h2>
-<p style="text-align: center">Thank you for registering, <CFOUTPUT>#form.name#</CFOUTPUT>!</p>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration successful</title>
+    <link rel="stylesheet" href="/bugtracker/styles.css">
+</head>
+<body>
+    <CFOUTPUT>#menu.renderMenu()#</CFOUTPUT>
+
+    <h2 style="text-align: center">Registration Successful</h2>
+    <p style="text-align: center">Thank you for registering, <CFOUTPUT>#form.name#</CFOUTPUT>!</p>
+</body>
+</html>
 
