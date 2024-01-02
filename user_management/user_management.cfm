@@ -84,7 +84,7 @@
                             <input type="hidden" name="editUser" value="#userList.id#">
                             <button type="submit" class="action-button">Edit</button>
                         </form>
-                        <form action="user_management.cfm" method="post" style="display:inline;">
+                        <form id="deleteUserForm" action="user_management.cfm" method="post" style="display:inline;">
                             <input type="hidden" name="deleteUser" value="#userList.id#">
                             <button type="submit" class="action-button delete-button">Delete</button>
                         </form>
@@ -94,6 +94,20 @@
         </table>
     </cfif>
 
+
+    <script>
+        document.getElementById('deleteUserForm').addEventListener('submit', function (event) {
+            // Display a confirmation dialog
+            var userConfirmed = confirm("Are you sure you want to delete this user?");
+
+            // Check user's choice
+            if (!userConfirmed) {
+                // User clicked "Cancel" or closed the dialog, prevent form submission
+                event.preventDefault();
+            }
+            // If user confirmed, the form will proceed with submission
+        });
+    </script>
 </body>
 </html>
 
