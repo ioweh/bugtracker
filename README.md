@@ -50,4 +50,7 @@ Database: bugtrackerdb
 
 Password: the password of the bugtracker admin user
 
+# Responsive design
+
+The app should be looking good and quite usable on a mobile device, such as phone.
 
