@@ -32,7 +32,7 @@ Once the bug is created, it is automatically assigned the New status. In the bug
 
 # ColdFusion version
 
-The version of ColdFusion used on the server is Adobe ColdFusion (2023 Release). As the database management system was chosen PostgreSQL. Please note that the user bugtrackeradmin needs to be created before filling in the table from the script.
+The version of ColdFusion used on the server is Adobe ColdFusion (2023 Release). PostgreSQL was chosen as the database management system. Please note that the user bugtrackeradmin needs to be created before filling in the table from the script.
 
 # Data source
 
