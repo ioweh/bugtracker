@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Bug</title>
     <link rel="stylesheet" href="/bugtracker/styles.css">
     <style>
@@ -35,6 +37,12 @@
 
         .bug-details-value {
             color: #333;
+        }
+
+        @media only screen and (hover: none) and (orientation: portrait), (pointer: coarse) or (pointer: none) {
+            .bug-details {
+                width: auto;
+            }
         }
     </style>
 </head>

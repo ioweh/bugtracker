@@ -27,14 +27,6 @@
             }
         </script>
         <style>
-            body {
-                font-family: 'Arial', sans-serif;
-                background-color: ##f5f5f5;
-                margin: 0;
-                padding: 0;
-                height: 100vh;
-            }
-
             .menu {
                 display: flex;
                 justify-content: space-between;
@@ -66,6 +58,22 @@
                 color: white;
                 font-size: 16px;
             }
+
+            @media only screen and (hover: none) and (orientation: portrait), (pointer: coarse) or (pointer: none) {
+                .menu {
+                    flex-direction: column-reverse;
+                    align-items: stretch;
+                }
+                .left-section {
+                    flex-direction: column;
+                }
+                .right-section {
+                    text-align: center;
+                }
+                .menu-button {
+                    margin: 0.3rem;
+                }
+}
         </style>
     </cffunction>
 </cfcomponent>

@@ -1,4 +1,12 @@
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: ##f5f5f5;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
 table {
     width: 80%;
     margin: 20px auto;
@@ -33,7 +41,7 @@ tr:hover {
 
 .container {
     width: 500px;
-    height: 600px;
+    height: auto;
     margin: 20px;
     background-color: #fff;
     padding: 20px;
@@ -74,5 +82,31 @@ button:disabled {
 
 .delete-button {
     background-color: red;
+}
+
+@media only screen and (hover: none) and (orientation: portrait), (pointer: coarse) or (pointer: none) {
+    .container {
+        width: auto;
+    }
+
+    button[name="loginButton"] {
+        width: 100%;
+	margin: 2rem 0;
+	padding: 1rem;
+    }
+
+    h2 {
+        text-align: center;
+    }
+    
+    label {
+        margin-bottom: 1.5rem;
+    }
+
+    th, td {
+        display: block;
+	width: 100%;
+	box-sizing: border-box;
+    }
 }
 

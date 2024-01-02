@@ -31,12 +31,7 @@
 <html>
 <head>
     <title>Login</title>
-        <link rel="stylesheet" href="/bugtracker/styles.css">
-        <style>
-            .container {
-                height: 300px;
-            }
-    </style>
+    <link rel="stylesheet" href="/bugtracker/styles.css">
 </head>
 <body>
     <div class="container">

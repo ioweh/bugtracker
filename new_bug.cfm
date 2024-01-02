@@ -9,11 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Bug</title>
     <link rel="stylesheet" href="/bugtracker/styles.css">
-    <style>
-        .container {
-            height: 650px;
-        }
-    </style>
 </head>
 <body>
 
