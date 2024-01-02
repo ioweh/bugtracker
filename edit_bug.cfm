@@ -31,11 +31,15 @@
             <cfparam name="form.previousStatus" type="string">
             <cfparam name="form.comments" type="string">
             <cfparam name="form.userId" type="numeric">
+            <cfparam name="form.shortDescription" type="string">
+            <cfparam name="form.longDescription" type="string">
+            <cfparam name="form.priority" type="string">
+            <cfparam name="form.severity" type="string">
             <cfset bugId = (isNumeric(form.bugId) ? int(form.bugId) : 0)>
             <cfset userId = (isNumeric(form.userId) ? int(form.userId) : 0)>
 
             <!-- Call the BugService.cfc to update the bug -->
-            <cfset bugService.updateBug(bugId, form.status, form.previousStatus, form.comments, userId)>
+            <cfset bugService.updateBug(bugId, form.status, form.previousStatus, form.comments, userId, shortDescription, longDescription, priority, severity)>
 
             <cfset bugDetails = bugService.getBugDetails("#url.bugId#")>
             <cfset editMessage = "Edit Bug (current status is #bugDetails.status#)">
@@ -98,7 +102,30 @@
 
                 <!-- Comment field -->
                 <label for="comments">Comments:</label>
-                <textarea name="comments" rows="4" cols="50"></textarea>
+                <textarea name="comments" rows="4" cols="50" required></textarea>
+
+                <label for="shortDescription">Short Description:</label>
+                <input type="text" id="shortDescription" name="shortDescription" value="<CFOUTPUT>#bugDetails.short_description#</CFOUTPUT>" required>
+
+                <label for="longDescription">Long Description:</label>
+                <textarea id="longDescription" name="longDescription" rows="4" required><CFOUTPUT>#bugDetails.long_description#</CFOUTPUT></textarea>
+
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="very_urgent" <cfif "very_urgent" EQ bugDetails.urgency>selected</cfif>>Very Urgent</option>
+                    <option value="urgent" <cfif "urgent" EQ bugDetails.urgency>selected</cfif>>Urgent</option>
+                    <option value="non_urgent" <cfif "non_urgent" EQ bugDetails.urgency>selected</cfif>>Non Urgent</option>
+                    <option value="not_at_all_urgent" <cfif "not_at_all_urgent" EQ bugDetails.urgency>selected</cfif>>Not at All Urgent</option>
+                </select>
+
+                <label for="severity">Severity:</label>
+                <select id="severity" name="severity" required>
+                    <option value="blocker" <cfif "blocker" EQ bugDetails.severity>selected</cfif>>Blocker</option>
+                    <option value="critical" <cfif "critical" EQ bugDetails.severity>selected</cfif>>Critical</option>
+                    <option value="non_critical" <cfif "non_critical" EQ bugDetails.severity>selected</cfif>>Non Critical</option>
+                    <option value="request_for_change" <cfif "request_for_change" EQ bugDetails.severity>selected</cfif>>Request for Change</option>
+                </select>
+
 
                 <!-- List of users from user_account table -->
                 <label for="userId">Assign to User:</label>

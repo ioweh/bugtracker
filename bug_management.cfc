@@ -61,6 +61,10 @@
         <cfargument name="previousStatus" type="string" required="true">
         <cfargument name="comments" type="string" required="true">
         <cfargument name="userId" type="numeric" required="true">
+        <cfargument name="shortDescription" type="string" required="true">
+        <cfargument name="longDescription" type="string" required="true">
+        <cfargument name="priority" type="string" required="true">
+        <cfargument name="severity" type="string" required="true">
 
         <cfset var action = "">
 
@@ -82,7 +86,11 @@
             UPDATE bug
             SET
                 user_id = <cfqueryparam value="#userId#" cfsqltype="cf_sql_integer">,
-                status = <cfqueryparam value="#status#" cfsqltype="cf_sql_varchar">::bug_status
+                status = <cfqueryparam value="#status#" cfsqltype="cf_sql_varchar">::bug_status,
+                short_description = <cfqueryparam value="#shortDescription#" cfsqltype="cf_sql_varchar">,
+                long_description = <cfqueryparam value="#longDescription#" cfsqltype="cf_sql_varchar">,
+                urgency = <cfqueryparam value="#priority#" cfsqltype="cf_sql_varchar">::bug_urgency,
+                severity = <cfqueryparam value="#severity#" cfsqltype="cf_sql_varchar">::bug_severity
             WHERE id = <cfqueryparam value="#bugId#" cfsqltype="cf_sql_integer">;
             INSERT INTO bug_history (date_time, action, comment, user_id, bug_id)
             VALUES (
