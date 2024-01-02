@@ -1,3 +1,7 @@
+CREATE ROLE bugtrackeradmin WITH LOGIN;
+
+\password bugtrackeradmin
+
 drop database bugtrackerdb;
 
 create database bugtrackerdb with owner bugtrackeradmin;
