@@ -39,7 +39,7 @@
             color: #333;
         }
 
-        @media only screen and (hover: none) and (orientation: portrait), (pointer: coarse) or (pointer: none) {
+        @media only screen and (max-width: 767px) {
             .bug-details {
                 width: auto;
             }

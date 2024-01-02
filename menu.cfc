@@ -59,7 +59,7 @@
                 font-size: 16px;
             }
 
-            @media only screen and (hover: none) and (orientation: portrait), (pointer: coarse) or (pointer: none) {
+            @media only screen and (max-width: 767px) {
                 .menu {
                     flex-direction: column-reverse;
                     align-items: stretch;
