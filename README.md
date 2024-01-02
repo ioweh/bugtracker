@@ -20,7 +20,7 @@ Once the code is checked that it compiles, the deployment to the production serv
 
 # Database creation
 
-The db_sript.sql file, which can be found in this repository, creates the database and fills it with the users. Cascading deletes are taken into account. I.e., when the bug is deleted, all the records in the bug history table associated with this bug, are deleted too. Similarly, when the user is deleted, all the records in the bug table associated with this user are deleted and all the records in the bug history table associated with these bugs are deleted too.
+The db_sript.sql file, which can be found in the root of this repository, creates the database and fills it with the users. Cascading deletes are taken into account. I.e., when the bug is deleted, all the records in the bug history table associated with this bug, are deleted too. Similarly, when the user is deleted, all the records in the bug table associated with this user are deleted and all the records in the bug history table associated with these bugs are deleted too.
 
 # Bug workflow
 
