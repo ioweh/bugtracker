@@ -79,6 +79,17 @@
             });
         }
 
+        function confirmDeleteBug(bugId) {
+            // Display a confirmation dialog
+            var userConfirmed = confirm("Are you sure you want delete this bug?");
+
+            // Check user's choice
+            if (userConfirmed) {
+                // User clicked "OK", proceed with the action
+                deleteBug(bugId);
+            }
+        }
+
         function changeActionLocation(page) {
             window.location.href = page;
         }
@@ -112,7 +123,7 @@
                     <td>
                     <button class="action-button" onclick="changeActionLocation('/bugtracker/edit_bug.cfm?bugId=<CFOUTPUT>#id#</CFOUTPUT>')">Edit</button>
                     <button class="action-button" onclick="changeActionLocation('/bugtracker/view_bug.cfm?bugId=<CFOUTPUT>#id#</CFOUTPUT>')">View</button>
-                    <button class="action-button delete-button" onclick="deleteBug('<CFOUTPUT>#id#</CFOUTPUT>')">Delete</button>
+                    <button class="action-button delete-button" onclick="confirmDeleteBug('<CFOUTPUT>#id#</CFOUTPUT>')">Delete</button>
                     </td>
                 </tr>
             </cfloop>
