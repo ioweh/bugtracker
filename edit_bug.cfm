@@ -105,7 +105,7 @@
                 <textarea id="comments" name="comments" rows="4" cols="50" required></textarea>
 
                 <label for="shortDescription">Short Description:</label>
-                <input type="text" id="shortDescription" name="shortDescription" value="<CFOUTPUT>#bugDetails.short_description#</CFOUTPUT>" required>
+                <input type="text" id="shortDescription" name="shortDescription" value="<CFOUTPUT>#bugDetails.short_description#</CFOUTPUT>" required autocomplete="off">
 
                 <label for="longDescription">Long Description:</label>
                 <textarea id="longDescription" name="longDescription" rows="4" required><CFOUTPUT>#bugDetails.long_description#</CFOUTPUT></textarea>

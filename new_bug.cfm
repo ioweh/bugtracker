@@ -21,7 +21,7 @@
             <input type="date" id="date" name="date" required>
 
             <label for="shortDescription">Short Description:</label>
-            <input type="text" id="shortDescription" name="shortDescription" required>
+            <input type="text" id="shortDescription" name="shortDescription" required autocomplete="off">
 
             <label for="longDescription">Long Description:</label>
             <textarea id="longDescription" name="longDescription" rows="4" required></textarea>
