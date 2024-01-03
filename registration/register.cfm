@@ -1,6 +1,7 @@
 
 <cfset menu = createObject("component", "bugtracker.menu")>
 
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -13,17 +14,17 @@
     <div class="container">
         <h2>User Registration</h2>
         <form action="process_registration.cfm" method="post">
-            <label for="username">Login:</label>
-            <input type="text" name="login" required><br>
+            <label for="login">Login:</label>
+            <input type="text" id="login" name="login" required autocomplete="off"><br>
 
-            <label for="username">Name:</label>
-            <input type="text" name="name" required><br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required autocomplete="off"><br>
 
-            <label for="username">Surname:</label>
-            <input type="text" name="surname" required><br>
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname" required autocomplete="off"><br>
         
             <label for="password">Password:</label>
-            <input type="password" name="password" required><br>
+            <input type="password" id="password" name="password" required autocomplete="off"><br>
         
             <button type="submit">Register</button>
         </form>

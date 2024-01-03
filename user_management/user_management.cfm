@@ -30,13 +30,13 @@
                 <form action="user_management.cfm" method="post">
                     <input type="hidden" name="userId" value="<CFOUTPUT>#userDetails.id#</CFOUTPUT>">
                     <label for="newLogin">Login:</label>
-                    <input type="text" name="newLogin" value="<CFOUTPUT>#userDetails.login#</CFOUTPUT>">
+                    <input type="text" id="newLogin" name="newLogin" value="<CFOUTPUT>#userDetails.login#</CFOUTPUT>">
                     <label for="newUsername">Name:</label>
-                    <input type="text" name="newUsername" value="<CFOUTPUT>#userDetails.name#</CFOUTPUT>">
+                    <input type="text" id="newUsername" name="newUsername" value="<CFOUTPUT>#userDetails.name#</CFOUTPUT>">
                     <label for="newUserSurname">Surname:</label>
-                    <input type="text" name="newUserSurname" value="<CFOUTPUT>#userDetails.surname#</CFOUTPUT>">
+                    <input type="text" id="newUserSurname" name="newUserSurname" value="<CFOUTPUT>#userDetails.surname#</CFOUTPUT>">
                     <label for="newPassword">Password:</label>
-                    <input type="text" name="newPassword" value="">
+                    <input type="text" id="newPassword" name="newPassword" value="">
                     <button type="submit">Save</button>
                 </form>
             </div>

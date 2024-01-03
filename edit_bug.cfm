@@ -65,23 +65,23 @@
                 <label for="status">Status:</label>
                 <cfswitch expression="#bugDetails.status#">
                     <cfcase value="new">
-                        <select name="status">
+                        <select id="status" name="status">
                             <option value="open">Open</option>
                         </select>
                     </cfcase>
                     <cfcase value="open">
-                        <select name="status">
+                        <select id="status" name="status">
                             <option value="solved">Solved</option>
                         </select>
                     </cfcase>
                     <cfcase value="solved">
-                        <select name="status">
+                        <select id="status" name="status">
                             <option value="open">Open</option>
                             <option value="checked">Checked</option>
                         </select>
                     </cfcase>
                     <cfcase value="checked">
-                        <select name="status">
+                        <select id="status" name="status">
                             <option value="open">Open</option>
                             <option value="closed">Closed</option>
                         </select>
@@ -91,7 +91,7 @@
                     </cfcase>
                     <cfdefaultcase>
                         <!-- Default dropdown with all possible values -->
-                        <select name="status">
+                        <select id="status" name="status">
                             <option value="new">New</option>
                             <option value="open">Open</option>
                             <option value="solved">Solved</option>
@@ -102,7 +102,7 @@
 
                 <!-- Comment field -->
                 <label for="comments">Comments:</label>
-                <textarea name="comments" rows="4" cols="50" required></textarea>
+                <textarea id="comments" name="comments" rows="4" cols="50" required></textarea>
 
                 <label for="shortDescription">Short Description:</label>
                 <input type="text" id="shortDescription" name="shortDescription" value="<CFOUTPUT>#bugDetails.short_description#</CFOUTPUT>" required>
@@ -111,7 +111,7 @@
                 <textarea id="longDescription" name="longDescription" rows="4" required><CFOUTPUT>#bugDetails.long_description#</CFOUTPUT></textarea>
 
                 <label for="priority">Priority:</label>
-                <select id="priority" name="priority" required>
+                <select id="priority" id="priority" name="priority" required>
                     <option value="very_urgent" <cfif "very_urgent" EQ bugDetails.urgency>selected</cfif>>Very Urgent</option>
                     <option value="urgent" <cfif "urgent" EQ bugDetails.urgency>selected</cfif>>Urgent</option>
                     <option value="non_urgent" <cfif "non_urgent" EQ bugDetails.urgency>selected</cfif>>Non Urgent</option>
@@ -129,7 +129,7 @@
 
                 <!-- List of users from user_account table -->
                 <label for="userId">Assign to User:</label>
-                <select name="userId">
+                <select id="userId" name="userId">
                     <!-- Fetch user list from the user_account table -->
                     <cfquery name="userList" datasource="CFBugTracker">
                         SELECT id, name

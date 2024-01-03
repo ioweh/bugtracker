@@ -40,10 +40,10 @@
         <h2><CFOUTPUT>#loginMessage#</CFOUTPUT></h2>
         <form method="post" action="#cgi.script_name#">
             <label for="login">Login:</label>
-            <input type="text" name="login" required><br>
+            <input type="text" id="login" name="login" required><br>
         
             <label for="password">Password:</label>
-            <input type="password" name="password" required><br>
+            <input type="password" id="password" name="password" required><br>
         
             <button type="submit" name="loginButton">Login</button>
         </form>
