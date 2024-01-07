@@ -62,7 +62,7 @@
     </cffunction>
 
     <!-- Function to delete user by id -->
-    <cffunction name="deleteUser" access="public" returntype="void">
+    <cffunction name="deleteUser" access="remote" returntype="void">
         <cfargument name="userId" type="numeric" required="true">
         
         <cfquery datasource="CFBugTracker">

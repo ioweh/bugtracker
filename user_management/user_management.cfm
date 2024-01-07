@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/bugtracker/styles.css">
 </head>
 <body>
+    <!-- Include jQuery for easier DOM manipulation -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <cfset menu = createObject("component", "bugtracker.menu")>
 
@@ -84,10 +86,7 @@
                             <input type="hidden" name="editUser" value="#userList.id#">
                             <button type="submit" class="action-button">Edit</button>
                         </form>
-                        <form id="deleteUserForm" action="user_management.cfm" method="post" style="display:inline;">
-                            <input type="hidden" name="deleteUser" value="#userList.id#">
-                            <button type="submit" class="action-button delete-button">Delete</button>
-                        </form>
+                        <button class="action-button delete-button" onclick="confirmDeleteUser(#userList.id#)">Delete</button>
                     </td>
                 </tr>
             </cfoutput>
@@ -95,18 +94,39 @@
     </cfif>
 
 
+
+    <!-- Include jQuery script for handling delete button click -->
     <script>
-        document.getElementById('deleteUserForm').addEventListener('submit', function (event) {
+        function deleteUser(userId) {
+            // Use AJAX to call the CFC method
+            $.ajax({
+                url: 'user_management.cfc',
+                data: {
+                    method: 'deleteUser',
+                    userId,
+                },
+                type: 'POST',
+                dataType: 'text',
+                success: function(response) {
+                    // reload the page
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert('Error calling CFC method');
+                }
+            });
+        }
+
+        function confirmDeleteUser(userId) {
             // Display a confirmation dialog
             var userConfirmed = confirm("Are you sure you want to delete this user?");
 
             // Check user's choice
-            if (!userConfirmed) {
-                // User clicked "Cancel" or closed the dialog, prevent form submission
-                event.preventDefault();
+            if (userConfirmed) {
+                // User clicked "OK", proceed with the action
+                deleteUser(userId);
             }
-            // If user confirmed, the form will proceed with submission
-        });
+        }
     </script>
 </body>
 </html>
