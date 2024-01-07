@@ -3,7 +3,7 @@ component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
         // Instantiate the BugService component
-        //cflint ignore:MISSING_VAR
+        <!--- @CFLintIgnore MISSING_VAR --->
         bugService = createObject("component", "bugtracker.bug_management");
     }
 
