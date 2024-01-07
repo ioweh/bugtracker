@@ -44,7 +44,7 @@
         </cfquery>
 
         <!-- Retrieve the generated ID from the result object -->
-        <cfset result = insertResult.id[1]>
+        <cfset var result = insertResult.id[1]>
 
         <cfquery datasource="CFBugTracker">
             INSERT INTO bug_history (date_time, action, comment, user_id, bug_id)

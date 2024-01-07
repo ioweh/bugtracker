@@ -81,6 +81,8 @@
         <!-- In a production environment, hash the password before storing it in the database -->
         <cfset var hashedPassword = hash(newPassword, "SHA-256")>
 
+        <cfset var insertResult = "">
+
         <cfquery name="insertResult" datasource="CFBugTracker">
             INSERT INTO user_account (login, name, surname, password)
             VALUES (

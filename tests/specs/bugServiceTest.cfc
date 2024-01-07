@@ -3,6 +3,7 @@ component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
         // Instantiate the BugService component
+        <!--- // NOVAR --->
         bugService = createObject("component", "bugtracker.bug_management");
     }
 
