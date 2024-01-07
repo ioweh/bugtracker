@@ -3,7 +3,6 @@ component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
         // Instantiate the TextFormatters component
-        <!--- // NOVAR --->
         textFormatters = createObject("component", "bugtracker.text_formatters");
     }
 
