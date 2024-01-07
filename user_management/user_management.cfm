@@ -56,13 +56,6 @@
         <cfset userManagement.updateUser(userIdToUpdate, newLogin, newUsername, newUserSurname, newPassword)>
     </cfif>
 
-    <!-- Check if a form is submitted for deletion -->
-    <cfif structKeyExists(form, "deleteUser")>
-        <!-- Delete user -->
-        <cfset userIdToDelete = form.deleteUser>
-        <cfset userManagement.deleteUser(userIdToDelete)>
-    </cfif>
-
     <!-- Display the list of users -->
     <h2 style="text-align: center">List of Users</h2>
     <cfset userList = userManagement.listUsers()>
@@ -92,8 +85,6 @@
             </cfoutput>
         </table>
     </cfif>
-
-
 
     <!-- Include jQuery script for handling delete button click -->
     <script>
