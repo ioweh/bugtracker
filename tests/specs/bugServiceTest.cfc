@@ -2,15 +2,16 @@
 component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
-        // Instantiate the BugService component
-        <!--- @CFLintIgnore MISSING_VAR --->
-        bugService = createObject("component", "bugtracker.bug_management");
+        // TD: Instantiate the BugService component here after fixing CFLint
+        //bugService = createObject("component", "bugtracker.bug_management");
     }
 
     function run() {
         describe("BugService Tests", function() {
             it("should add a new bug", function() {
                 // Arrange
+                var bugService = createObject("component", "bugtracker.bug_management");
+
                 // Mock bugData
                 var formData = {
                     date: createDate(2022, 1, 1),
@@ -31,6 +32,7 @@ component extends="testbox.system.BaseSpec" {
 
             it("should get bug list", function() {
                 // Arrange
+                var bugService = createObject("component", "bugtracker.bug_management");
                 // Mock bugData
                 var formData = {
                     date: createDate(2022, 1, 1),
@@ -55,6 +57,7 @@ component extends="testbox.system.BaseSpec" {
 
             it("should update the bug, get bug details and log the correct action", function() {
                 // Arrange: Set up the necessary data for the test
+                var bugService = createObject("component", "bugtracker.bug_management");
                 // Mock bugData
                 var formData = {
                     date: createDate(2022, 1, 1),

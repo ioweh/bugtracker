@@ -2,15 +2,15 @@
 component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
-        // Instantiate the UserService component
-        //cflint ignore:MISSING_VAR
-        userService = createObject("component", "bugtracker.user_management.user_management");
+        // Instantiate the UserService component here after fixing CFLint
+        //userService = createObject("component", "bugtracker.user_management.user_management");
     }
 
     function run() {
         describe("UserService Tests", function() {
             it("should add a new user and get the added user by id", function() {
                 // Arrange: Set up the necessary data for the test
+                var userService = createObject("component", "bugtracker.user_management.user_management");
 
                 var newLogin = "testuser";
                 var newName = "Test";
@@ -41,6 +41,7 @@ component extends="testbox.system.BaseSpec" {
 
             it("should list all users", function() {
                 // Arrange: Set up the necessary data for the test
+                var userService = createObject("component", "bugtracker.user_management.user_management");
 
                 var newLogin = "testuser";
                 var newName = "Test";
@@ -68,6 +69,7 @@ component extends="testbox.system.BaseSpec" {
 
             it("should get the user by credentials", function() {
                 // Arrange: Set up the necessary data for the test
+                var userService = createObject("component", "bugtracker.user_management.user_management");
 
                 var newLogin = "testuser";
                 var newName = "Test";
@@ -94,6 +96,7 @@ component extends="testbox.system.BaseSpec" {
 
             it("should update user details", function() {
                 // Arrange: Set up the necessary data for the test
+                var userService = createObject("component", "bugtracker.user_management.user_management");
 
                 var newLogin = "testuser";
                 var newName = "Test";

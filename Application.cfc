@@ -12,7 +12,7 @@ component {
         // Check if the user is not logged in and the requested page is not the login page
         if (!structKeyExists(session, "loggedInUserId") && !listLast(arguments.1, "/") is "login.cfm") {
             // Redirect to the login page
-            location(url="login.cfm", addtoken="false");
+            location(url="/bugtracker/login.cfm", addtoken="false");
             // Abort further processing
             cfabort;
         }

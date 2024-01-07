@@ -2,15 +2,15 @@
 component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
-        // Instantiate the TextFormatters component
-        //cflint ignore:MISSING_VAR
-        textFormatters = createObject("component", "bugtracker.text_formatters");
+        // Instantiate the TextFormatters component here after fixing CFLint
+        //textFormatters = createObject("component", "bugtracker.text_formatters");
     }
 
     function run() {
         describe("Text Formatters Tests", function() {
 
             it("should return human-readable severity", function() {
+                var textFormatters = createObject("component", "bugtracker.text_formatters");
                 // Test with known severity values
                 expect(textFormatters.getHumanReadableSeverity("blocker")).toBe("Blocker");
                 expect(textFormatters.getHumanReadableSeverity("critical")).toBe("Critical");
@@ -22,6 +22,7 @@ component extends="testbox.system.BaseSpec" {
             });
 
             it("should return human-readable urgency", function() {
+                var textFormatters = createObject("component", "bugtracker.text_formatters");
                 // Test with known urgency values
                 expect(textFormatters.getHumanReadableUrgency("very_urgent")).toBe("Very Urgent");
                 expect(textFormatters.getHumanReadableUrgency("urgent")).toBe("Urgent");
@@ -33,6 +34,7 @@ component extends="testbox.system.BaseSpec" {
             });
 
             it("should capitalize the first letter", function() {
+                var textFormatters = createObject("component", "bugtracker.text_formatters");
                 // Test with various input values
                 expect(textFormatters.capitalizeFirstLetter("hello")).toBe("Hello");
                 expect(textFormatters.capitalizeFirstLetter("world")).toBe("World");
