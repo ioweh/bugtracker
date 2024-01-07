@@ -51,7 +51,7 @@
 
     <!-- Check if the bug exists -->
     <cfif bugDetails.recordCount EQ 0>
-        <p>Bug not found.</p>
+        <h2 style="text-align: center">Bug not found.</h2>
     <cfelse>
     
         <div class="container">
