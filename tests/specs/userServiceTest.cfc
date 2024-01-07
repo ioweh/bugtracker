@@ -3,6 +3,7 @@ component extends="testbox.system.BaseSpec" {
 
     function beforeAll() {
         // Instantiate the UserService component
+        //cflint ignore:MISSING_VAR
         userService = createObject("component", "bugtracker.user_management.user_management");
     }
 
