@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run CFLint
-      run: find . -name '*.cfc' | grep -v '/tests/' | xargs box cflint reportLevel=ERROR
+      run: find . -name '*.cfc' | grep -v '/tests/' | xargs box cflint --reportLevel=ERROR
 
   deploy-to-prod:
     runs-on: ubuntu-latest
