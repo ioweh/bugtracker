@@ -13,13 +13,14 @@
     <cfset login = form.login>
     <cfset password = form.password>
 
-    <cfset userService = createObject("component", "user_management/user_management")>
+    <cfset userService = createObject("component", "/bugtracker/user_management/user_management")>
     <cfset currentUser = userService.getUserIdByCredentials(login, password)>
 
     <!-- Perform authentication logic (replace this with your authentication logic) -->
     <cfif currentUser.recordCount>
         <!-- Store user information in session upon successful login -->
         <cfset session.loggedInUserId = currentUser.id>
+        <cfset loginMessage = "Logged in successfully">
         <!-- Redirect to a secured page (e.g., index.cfm) -->
         <cflocation url="index.cfm" addtoken="false">
     <cfelse>

@@ -26,7 +26,7 @@
     </cffunction>
 
     <!-- Function to add a new bug -->
-    <cffunction name="addBug" access="remote" returntype="void">
+    <cffunction name="addBug" access="remote" returntype="numeric">
         <cfargument name="bugData" type="struct" required="true">
         <cfset var insertResult = "">
         <cfquery name="insertResult" datasource="CFBugTracker">
@@ -42,6 +42,10 @@
             )
             RETURNING id;
         </cfquery>
+
+        <!-- Retrieve the generated ID from the result object -->
+        <cfset result = insertResult.id[1]>
+
         <cfquery datasource="CFBugTracker">
             INSERT INTO bug_history (date_time, action, comment, user_id, bug_id)
             VALUES (
@@ -52,6 +56,7 @@
                 <cfqueryparam value="#insertResult.id#" cfsqltype="cf_sql_integer">
             );
         </cfquery>
+        <cfreturn result>
     </cffunction>
 
     <!-- Function to update an existing bug -->

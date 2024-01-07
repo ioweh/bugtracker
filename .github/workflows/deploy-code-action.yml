@@ -37,6 +37,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }} 
-        source: "*,!.gitignore,!.git/*,!.github/*,!.git,!.github"
+        source: "*,!.gitignore,!.git/*,!.github/*,!.git,!.github,!.tests"
         target: "ColdFusion/cfusion/wwwroot/bugtracker"
 

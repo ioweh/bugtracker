@@ -72,7 +72,7 @@
     </cffunction>
 
     <!-- Function to add a new user -->
-    <cffunction name="addUser" access="public" returntype="void">
+    <cffunction name="addUser" access="public" returntype="numeric">
         <cfargument name="newLogin" type="string" required="true">
         <cfargument name="newName" type="string" required="true">
         <cfargument name="newSurname" type="string" required="true">
@@ -81,7 +81,7 @@
         <!-- In a production environment, hash the password before storing it in the database -->
         <cfset var hashedPassword = hash(newPassword, "SHA-256")>
 
-        <cfquery datasource="CFBugTracker">
+        <cfquery name="insertResult" datasource="CFBugTracker">
             INSERT INTO user_account (login, name, surname, password)
             VALUES (
                 <cfqueryparam value="#newLogin#" cfsqltype="cf_sql_varchar">,
@@ -89,7 +89,14 @@
                 <cfqueryparam value="#newSurname#" cfsqltype="cf_sql_varchar">,
                 <cfqueryparam value="#hashedPassword#" cfsqltype="cf_sql_varchar">
             )
+            RETURNING id;
         </cfquery>
+
+        <!-- Retrieve the generated ID from the result object -->
+        <cfset var userId = insertResult.id[1]>
+
+        <!-- Return the generated ID -->
+        <cfreturn userId>
     </cffunction>
 
 </cfcomponent>
