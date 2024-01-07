@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run CFLint
-      run: box cflint -config .cflintrc reportLevel=ERROR
+      run: box cflint -config .cflintrc --reportLevel=ERROR
 
   deploy-to-prod:
     runs-on: ubuntu-latest
