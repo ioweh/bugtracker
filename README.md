@@ -50,6 +50,36 @@ Database: bugtrackerdb
 
 Password: the password of the bugtracker admin user
 
+# Tests
+
+A few fixes were made to the TestBox code in order for it to actually run. Therefore the following fork has been created:
+
+https://github.com/ioweh/TestBox
+
+https://github.com/Ortus-Solutions/TestBox/commit/c87d229cebb50980996b8c8ea62fd2ab4848b862
+
+Download the TestBox from here into the wwwroot folder on the server.
+
+git clone https://github.com/ioweh/TestBox.git
+
+Then rename the wwwroot/TestBox folder to wwwroot/testbox.
+
+The tests can be run individually from this folder:
+
+http://localhost:8500/bugtracker/tests/specs/
+
+Or they can be run via Commandbox. Run the following command in the bugtracker directory:
+
+box
+
+And then:
+
+testbox run
+
+The debian package for CommandBox can be downloaded from here:
+
+https://www.ortussolutions.com/products/commandbox
+
 # Responsive design
 
 The app should be looking good and quite usable on a mobile device, such as phone.
